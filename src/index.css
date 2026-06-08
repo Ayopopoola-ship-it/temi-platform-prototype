@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+/* =================================================================
+   Temi Platform Prototype — FCMB Design System (CLAUDE.md §5)
+   Tailwind v4, CSS-first. Light mode only for V1 (dark mode is
+   explicitly out of scope — see CLAUDE.md §15).
+   ================================================================= */
+
+:root {
+  --radius: 0.5rem; /* rounded-lg = 8px cards; buttons/inputs use --radius-md (6px) */
+
+  /* --- FCMB brand (raw tokens) --- */
+  --fcmb-purple: #5c2d91; /* primary actions, headers, brand, active nav */
+  --fcmb-yellow: #f5c518; /* accent only, sparingly (logo underline) */
+  --fcmb-white: #ffffff;
+  --fcmb-offwhite: #f7f7f7; /* secondary backgrounds, cards */
+
+  /* --- Status --- */
+  --status-green: #16a34a; /* healthy / live / resolved */
+  --status-amber: #f59e0b; /* at risk / in progress / onboarding */
+  --status-red: #dc2626; /* critical / blocked / security P0-P1 */
+
+  /* --- Neutral grays --- */
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --border-neutral: #e5e7eb;
+  --disabled: #9ca3af;
+
+  /* --- shadcn semantic tokens (mapped to FCMB above) --- */
+  --background: var(--fcmb-white);
+  --foreground: var(--text-primary);
+  --card: var(--fcmb-white);
+  --card-foreground: var(--text-primary);
+  --popover: var(--fcmb-white);
+  --popover-foreground: var(--text-primary);
+  --primary: var(--fcmb-purple);
+  --primary-foreground: var(--fcmb-white);
+  --secondary: var(--fcmb-offwhite);
+  --secondary-foreground: var(--text-primary);
+  --muted: var(--fcmb-offwhite);
+  --muted-foreground: var(--text-secondary);
+  --accent: #f4f1f8; /* subtle purple-tinted hover; yellow stays a deliberate brand accent */
+  --accent-foreground: var(--fcmb-purple);
+  --destructive: var(--status-red);
+  --destructive-foreground: var(--fcmb-white);
+  --border: var(--border-neutral);
+  --input: var(--border-neutral);
+  --ring: var(--fcmb-purple);
+
+  /* --- Sidebar (persistent left nav, light with purple accents) --- */
+  --sidebar: var(--fcmb-white);
+  --sidebar-foreground: var(--text-primary);
+  --sidebar-primary: var(--fcmb-purple);
+  --sidebar-primary-foreground: var(--fcmb-white);
+  --sidebar-accent: #f4f1f8;
+  --sidebar-accent-foreground: var(--fcmb-purple);
+  --sidebar-border: var(--border-neutral);
+  --sidebar-ring: var(--fcmb-purple);
+
+  /* --- Charts (Recharts / shadcn charts) --- */
+  --chart-1: var(--fcmb-purple);
+  --chart-2: var(--fcmb-yellow);
+  --chart-3: var(--status-green);
+  --chart-4: var(--status-amber);
+  --chart-5: var(--status-red);
+}
+
+/* Expose tokens to Tailwind's utility/theme system. Semantic tokens drive
+   shadcn primitives; the fcmb and status tokens become direct brand
+   utilities (e.g. bg-fcmb-purple, text-status-red). */
+@theme inline {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* FCMB brand + status as direct utilities */
+  --color-fcmb-purple: var(--fcmb-purple);
+  --color-fcmb-yellow: var(--fcmb-yellow);
+  --color-fcmb-white: var(--fcmb-white);
+  --color-fcmb-offwhite: var(--fcmb-offwhite);
+  --color-status-green: var(--status-green);
+  --color-status-amber: var(--status-amber);
+  --color-status-red: var(--status-red);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-disabled: var(--disabled);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+    outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
+  }
+
+  body {
+    background-color: var(--fcmb-offwhite);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+}

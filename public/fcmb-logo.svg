@@ -1,0 +1,8 @@
+<svg width="140" height="32" viewBox="0 0 140 32" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FCMB Temi">
+  <!-- Placeholder FCMB logo. Replace with the official brand asset. -->
+  <rect width="32" height="32" rx="7" fill="#5C2D91"/>
+  <path d="M11 9.5h10M11 16h7" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/>
+  <rect x="11" y="21" width="10" height="2.6" rx="1.3" fill="#F5C518"/>
+  <text x="42" y="16" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="700" fill="#5C2D91" dominant-baseline="middle">FCMB</text>
+  <text x="42" y="26" font-family="Inter, system-ui, sans-serif" font-size="9" font-weight="500" fill="#4B5563" dominant-baseline="middle" letter-spacing="0.5">Temi AI</text>
+</svg>
