@@ -279,9 +279,14 @@ These are finalized. Do not redesign them.
 ## 10. Technology Stack (For This Prototype)
 
 ### Core
-- **React 18** with **Vite**
+- **React 19** with **Vite** (originally specced as React 18; bumped to 19 during
+  the foundation build because the current shadcn/ui + radix-ui stack is
+  React-19-first — radix's `Primitive` uses React 19's ref-as-prop pattern and
+  emits console errors under React 18 in dialog/popover/select paths. React 19 is
+  the stable, ecosystem-aligned choice and keeps the console clean.)
 - **TypeScript** (all files)
-- **Tailwind CSS** for styling
+- **Tailwind CSS** (v4, CSS-first config; FCMB design tokens live in
+  `src/index.css` via `@theme`, so there is no `tailwind.config.js`) for styling
 - **shadcn/ui** for component library (install components as needed)
 
 ### Recommended Libraries

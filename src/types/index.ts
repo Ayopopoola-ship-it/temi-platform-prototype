@@ -43,6 +43,10 @@ export interface Persona {
   experience: ExperienceKind
   /** Entity this persona is scoped to. Group personas use the group/bank id. */
   entityId: string
+  /** Display name of the scoped entity, e.g. "FCMB Asset Management". */
+  entityName: string
+  /** 1–2 char initials shown in the avatar. */
+  avatarInitial: string
   /** Why this persona exists in the prototype (from the §4 table). */
   purpose: string
 }
