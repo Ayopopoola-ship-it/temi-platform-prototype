@@ -112,6 +112,7 @@ export function TrendChart({
             fill="url(#trend-fill)"
             dot={false}
             activeDot={{ r: 4, strokeWidth: 0 }}
+            isAnimationActive={false}
           />
         </AreaChart>
       ) : (
@@ -141,6 +142,7 @@ export function TrendChart({
             strokeWidth={2}
             dot={false}
             activeDot={{ r: 4, strokeWidth: 0 }}
+            isAnimationActive={false}
           />
         </LineChart>
       )}
