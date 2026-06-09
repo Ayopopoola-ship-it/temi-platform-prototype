@@ -25,6 +25,7 @@ import GroupPipeline from "@/pages/group/Pipeline"
 import GroupSecurity from "@/pages/group/Security"
 import EntityDashboard from "@/pages/entity/Dashboard"
 import EntityKnowledgeBase from "@/pages/entity/KnowledgeBase"
+import EntityChannels from "@/pages/entity/Channels"
 
 interface RouteDef {
   path: string
@@ -151,6 +152,7 @@ const GROUP_PAGES: Record<string, ReactNode> = {
 const ENTITY_PAGES: Record<string, ReactNode> = {
   dashboard: <EntityDashboard />,
   "knowledge-base": <EntityKnowledgeBase />,
+  channels: <EntityChannels />,
 }
 
 function App() {
