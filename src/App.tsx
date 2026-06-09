@@ -13,10 +13,12 @@ import {
   Workflow,
   type LucideIcon,
 } from "lucide-react"
+import type { ReactNode } from "react"
 import { PersonaProvider } from "@/context/PersonaContext"
 import { AppShell } from "@/components/layout/AppShell"
 import { PlaceholderPage } from "@/components/layout/PlaceholderPage"
 import CustomerChatDemo from "@/pages/CustomerChatDemo"
+import GroupOverview from "@/pages/group/Overview"
 
 interface RouteDef {
   path: string
@@ -128,6 +130,14 @@ const ENTITY_ROUTES: RouteDef[] = [
   },
 ]
 
+/**
+ * Real page components keyed by their group route path. Paths absent here fall
+ * back to the PlaceholderPage scaffold until their screen is built.
+ */
+const GROUP_PAGES: Record<string, ReactNode> = {
+  overview: <GroupOverview />,
+}
+
 function App() {
   return (
     <BrowserRouter>
@@ -143,11 +153,13 @@ function App() {
                 key={`group-${r.path}`}
                 path={`group/${r.path}`}
                 element={
-                  <PlaceholderPage
-                    icon={r.icon}
-                    title={r.title}
-                    description={r.description}
-                  />
+                  GROUP_PAGES[r.path] ?? (
+                    <PlaceholderPage
+                      icon={r.icon}
+                      title={r.title}
+                      description={r.description}
+                    />
+                  )
                 }
               />
             ))}
