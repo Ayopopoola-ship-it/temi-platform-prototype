@@ -26,6 +26,9 @@ import GroupSecurity from "@/pages/group/Security"
 import EntityDashboard from "@/pages/entity/Dashboard"
 import EntityKnowledgeBase from "@/pages/entity/KnowledgeBase"
 import EntityChannels from "@/pages/entity/Channels"
+import EntityEscalation from "@/pages/entity/Escalation"
+import EntityCapabilities from "@/pages/entity/Capabilities"
+import EntityAnalytics from "@/pages/entity/Analytics"
 
 interface RouteDef {
   path: string
@@ -153,6 +156,9 @@ const ENTITY_PAGES: Record<string, ReactNode> = {
   dashboard: <EntityDashboard />,
   "knowledge-base": <EntityKnowledgeBase />,
   channels: <EntityChannels />,
+  escalation: <EntityEscalation />,
+  capabilities: <EntityCapabilities />,
+  analytics: <EntityAnalytics />,
 }
 
 function App() {

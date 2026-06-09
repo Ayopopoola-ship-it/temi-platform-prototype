@@ -49,6 +49,18 @@ const BANK_ANALYTICS: EntityAnalytics = {
     { label: "Complaints", value: 1400 },
     { label: "Other", value: 1100 },
   ],
+  byChannel: [
+    { label: "WhatsApp", value: 28000 },
+    { label: "Web", value: 13000 },
+    { label: "Mobile", value: 7230 },
+  ],
+  csatDistribution: [
+    { label: "Very satisfied", value: 6200 },
+    { label: "Satisfied", value: 2750 },
+    { label: "Neutral", value: 700 },
+    { label: "Dissatisfied", value: 400 },
+    { label: "Very dissatisfied", value: 250 },
+  ],
 }
 
 const ASSET_MANAGEMENT_ANALYTICS: EntityAnalytics = {
@@ -71,6 +83,20 @@ const ASSET_MANAGEMENT_ANALYTICS: EntityAnalytics = {
     { label: "Fund information", value: 70 },
     { label: "Complaints", value: 40 },
     { label: "Other", value: 35 },
+  ],
+  // Soft-launch pilot runs on the web widget only; WhatsApp and mobile are not
+  // yet live (see Channels). The split reflects that single live channel.
+  byChannel: [
+    { label: "Web", value: 1840 },
+    { label: "WhatsApp", value: 0 },
+    { label: "Mobile", value: 0 },
+  ],
+  csatDistribution: [
+    { label: "Very satisfied", value: 520 },
+    { label: "Satisfied", value: 270 },
+    { label: "Neutral", value: 120 },
+    { label: "Dissatisfied", value: 60 },
+    { label: "Very dissatisfied", value: 30 },
   ],
 }
 

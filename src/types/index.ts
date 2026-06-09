@@ -398,4 +398,8 @@ export interface EntityAnalytics {
   csat: TimeSeriesPoint[]
   /** Escalation volume split by intent category. */
   escalationByIntent: BreakdownSlice[]
+  /** Conversation volume split by delivery channel. */
+  byChannel: BreakdownSlice[]
+  /** CSAT rating distribution (sentiment buckets). */
+  csatDistribution: BreakdownSlice[]
 }
