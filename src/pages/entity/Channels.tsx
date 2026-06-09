@@ -17,7 +17,6 @@ import { makeAuditEntry } from "@/lib/audit"
 import { cn } from "@/lib/utils"
 import { Switch } from "@/components/ui/switch"
 import { PageHeader } from "@/components/layout/PageHeader"
-import { Panel } from "@/components/entity/Panel"
 import { ActivityLog } from "@/components/entity/ActivityLog"
 
 interface ChannelMeta {
