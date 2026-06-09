@@ -21,6 +21,7 @@ import CustomerChatDemo from "@/pages/CustomerChatDemo"
 import GroupOverview from "@/pages/group/Overview"
 import GroupEntities from "@/pages/group/Entities"
 import GroupEntityDetail from "@/pages/group/EntityDetail"
+import GroupPipeline from "@/pages/group/Pipeline"
 
 interface RouteDef {
   path: string
@@ -139,6 +140,7 @@ const ENTITY_ROUTES: RouteDef[] = [
 const GROUP_PAGES: Record<string, ReactNode> = {
   overview: <GroupOverview />,
   entities: <GroupEntities />,
+  pipeline: <GroupPipeline />,
 }
 
 function App() {
