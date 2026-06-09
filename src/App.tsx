@@ -19,6 +19,8 @@ import { AppShell } from "@/components/layout/AppShell"
 import { PlaceholderPage } from "@/components/layout/PlaceholderPage"
 import CustomerChatDemo from "@/pages/CustomerChatDemo"
 import GroupOverview from "@/pages/group/Overview"
+import GroupEntities from "@/pages/group/Entities"
+import GroupEntityDetail from "@/pages/group/EntityDetail"
 
 interface RouteDef {
   path: string
@@ -136,6 +138,7 @@ const ENTITY_ROUTES: RouteDef[] = [
  */
 const GROUP_PAGES: Record<string, ReactNode> = {
   overview: <GroupOverview />,
+  entities: <GroupEntities />,
 }
 
 function App() {
@@ -163,6 +166,12 @@ function App() {
                 }
               />
             ))}
+
+            {/* Group → entity drill-in (access is logged) */}
+            <Route
+              path="group/entities/:entityId"
+              element={<GroupEntityDetail />}
+            />
 
             {ENTITY_ROUTES.map((r) => (
               <Route
