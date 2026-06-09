@@ -1,5 +1,5 @@
 import { LayoutDashboard, ShieldCheck } from "lucide-react"
-import { motion } from "framer-motion"
+import { motion, type Variants } from "framer-motion"
 import type { Entity, EntityStatus } from "@/types"
 import { ENTITIES } from "@/data/entities"
 import { PageHeader } from "@/components/layout/PageHeader"
@@ -21,12 +21,12 @@ function orderEntities(entities: Entity[]): Entity[] {
   })
 }
 
-const gridVariants = {
+const gridVariants: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.045 } },
 }
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 12 },
   show: { opacity: 1, y: 0, transition: { duration: 0.28, ease: "easeOut" } },
 }
