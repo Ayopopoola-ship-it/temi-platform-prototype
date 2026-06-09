@@ -57,6 +57,9 @@ export interface Persona {
 
 export type EntityStatus = "Live" | "Onboarding" | "Pending"
 
+/** Delivery channels (CLAUDE.md §3, §7.9). */
+export type ChannelKey = "whatsapp" | "web" | "mobile"
+
 /** Per-entity performance metrics shown on cards and dashboards. */
 export interface EntityMetrics {
   /** Conversations in the reporting window. */
@@ -84,8 +87,12 @@ export interface Entity {
   /** Open security items scoped to this entity. */
   openP0Count: number
   openP1Count: number
-  /** Current onboarding stage id, if status is "Onboarding". */
-  onboardingStageId?: string
+  /** Delivery channels currently enabled for this entity (CLAUDE.md §7.9). */
+  channels: ChannelKey[]
+  /** Current onboarding stage, if status is "Onboarding". */
+  onboardingStage?: PlaybookStageKey
+  /** Optional free-text note (e.g. ROVA's divergent Ruby agent). */
+  note?: string
   brandColor?: string
 }
 
@@ -306,7 +313,7 @@ export interface EscalationRule {
    Capabilities (CLAUDE.md §7.11, §9.3)
    ================================================================= */
 
-export type CapabilityAvailability = "available" | "coming-soon"
+export type CapabilityAvailability = "available" | "v2.0"
 
 /** A platform capability an entity can enable/disable (CLAUDE.md §7.11). */
 export interface Capability {
@@ -318,14 +325,18 @@ export interface Capability {
   /** Whether the capability is currently enabled for the entity. */
   enabled: boolean
   /**
-   * Locked off and not toggleable. Used for advice-type capabilities at Asset
+   * Advice-type capability (recommends, projects returns, or assesses
+   * suitability). These are locked off and not toggleable for Asset Management
+   * — the agent informs but never advises (CLAUDE.md §9.3).
+   */
+  adviceType: boolean
+  /**
+   * Locked off and not toggleable. True for advice-type capabilities at Asset
    * Management, which are shown but cannot be enabled (CLAUDE.md §9.3).
    */
   locked?: boolean
-  /** Compliance note explaining a lock or a coming-soon state. */
+  /** Compliance note explaining a lock or a v2.0 state. */
   complianceNote?: string
-  /** Label for not-yet-available capabilities, e.g. "v2.0". */
-  versionLabel?: string
 }
 
 /* =================================================================
@@ -352,6 +363,8 @@ export interface SecurityItem {
   title: string
   description: string
   status: SecurityStatus
+  /** The role accountable for remediation, e.g. "Platform Security Lead". */
+  ownerRole: string
   /** Entity this item is scoped to, or "group" for platform-wide. */
   scope: string
   remediationState: string
@@ -372,4 +385,17 @@ export interface TimeSeriesPoint {
 export interface BreakdownSlice {
   label: string
   value: number
+}
+
+/** All analytics series/breakdowns for one entity (CLAUDE.md §7.6, §7.12). */
+export interface EntityAnalytics {
+  entityId: string
+  /** Conversation volume over time. */
+  conversationVolume: TimeSeriesPoint[]
+  /** AI resolution rate over time, 0–1. */
+  resolutionRate: TimeSeriesPoint[]
+  /** CSAT over time, 0–1. */
+  csat: TimeSeriesPoint[]
+  /** Escalation volume split by intent category. */
+  escalationByIntent: BreakdownSlice[]
 }
