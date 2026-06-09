@@ -22,6 +22,7 @@ import GroupOverview from "@/pages/group/Overview"
 import GroupEntities from "@/pages/group/Entities"
 import GroupEntityDetail from "@/pages/group/EntityDetail"
 import GroupPipeline from "@/pages/group/Pipeline"
+import GroupSecurity from "@/pages/group/Security"
 
 interface RouteDef {
   path: string
@@ -141,6 +142,7 @@ const GROUP_PAGES: Record<string, ReactNode> = {
   overview: <GroupOverview />,
   entities: <GroupEntities />,
   pipeline: <GroupPipeline />,
+  security: <GroupSecurity />,
 }
 
 function App() {
