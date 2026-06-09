@@ -24,6 +24,7 @@ import GroupEntityDetail from "@/pages/group/EntityDetail"
 import GroupPipeline from "@/pages/group/Pipeline"
 import GroupSecurity from "@/pages/group/Security"
 import EntityDashboard from "@/pages/entity/Dashboard"
+import EntityKnowledgeBase from "@/pages/entity/KnowledgeBase"
 
 interface RouteDef {
   path: string
@@ -149,6 +150,7 @@ const GROUP_PAGES: Record<string, ReactNode> = {
 /** Real Entity Admin Console pages keyed by route path. */
 const ENTITY_PAGES: Record<string, ReactNode> = {
   dashboard: <EntityDashboard />,
+  "knowledge-base": <EntityKnowledgeBase />,
 }
 
 function App() {

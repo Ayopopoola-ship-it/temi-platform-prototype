@@ -1,23 +1,20 @@
 import {
   CheckCircle2,
   CircleDashed,
-  Loader2,
+  Layers,
   TriangleAlert,
   type LucideIcon,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import type { KBDocumentStatus } from "@/types"
 
-const META: Record<
-  KBDocumentStatus,
-  { icon: LucideIcon; classes: string; spin?: boolean }
-> = {
+const META: Record<KBDocumentStatus, { icon: LucideIcon; classes: string }> = {
   Uploaded: {
     icon: CircleDashed,
     classes: "bg-fcmb-offwhite text-text-secondary ring-border",
   },
   Indexed: {
-    icon: Loader2,
+    icon: Layers,
     classes: "bg-primary/10 text-primary ring-primary/20",
   },
   Active: {
@@ -41,7 +38,7 @@ export function KBStatusBadge({ status }: { status: KBDocumentStatus }) {
         meta.classes
       )}
     >
-      <Icon className={cn("size-3", status === "Indexed" && "animate-spin")} />
+      <Icon className="size-3" />
       {status}
     </span>
   )
