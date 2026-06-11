@@ -6,11 +6,10 @@ import {
   ONBOARDING_ENTITY_IDS,
   getOnboardingForEntity,
 } from "@/data/onboarding"
-import { formatPercent } from "@/lib/format"
+import { formatPercent, monogram } from "@/lib/format"
 import { cn } from "@/lib/utils"
 import { PageHeader } from "@/components/layout/PageHeader"
 import { EntityStatusBadge } from "@/components/group/StatusBadge"
-import { monogram } from "@/components/group/EntityCard"
 import {
   OnboardingTimeline,
   OnboardingTrack,

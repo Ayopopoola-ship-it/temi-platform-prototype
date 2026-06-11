@@ -2,19 +2,12 @@ import { ArrowUpRight } from "lucide-react"
 import { Link } from "react-router-dom"
 import type { Entity } from "@/types"
 import { getAnalyticsByEntity } from "@/data/analytics"
-import { formatCompact, formatPercent } from "@/lib/format"
+import { formatCompact, formatPercent, monogram } from "@/lib/format"
 import { cn } from "@/lib/utils"
 import { EntityStatusBadge } from "./StatusBadge"
 import { ChannelBadges } from "./ChannelBadges"
 import { EntitySecurityChip } from "./EntitySecurityChip"
 import { Sparkline } from "./Sparkline"
-
-/** Two-letter monogram from the entity name (e.g. "FCMB Bank" → "FB"). */
-export function monogram(name: string): string {
-  const words = name.trim().split(/\s+/)
-  if (words.length === 1) return words[0].slice(0, 2).toUpperCase()
-  return (words[0][0] + words[1][0]).toUpperCase()
-}
 
 function Metric({ label, value }: { label: string; value: string }) {
   return (

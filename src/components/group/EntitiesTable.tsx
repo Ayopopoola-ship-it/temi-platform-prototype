@@ -20,11 +20,10 @@ import {
 import type { Entity } from "@/types"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
-import { formatCompact, formatPercent } from "@/lib/format"
+import { formatCompact, formatPercent, monogram } from "@/lib/format"
 import { EntityStatusBadge } from "./StatusBadge"
 import { EntitySecurityChip } from "./EntitySecurityChip"
 import { ChannelBadges } from "./ChannelBadges"
-import { monogram } from "./EntityCard"
 
 /** Match on entity name, short name, or status (search box, not dropdown). */
 const fuzzy: FilterFn<Entity> = (row, _columnId, value) => {

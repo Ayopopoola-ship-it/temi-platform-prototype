@@ -44,3 +44,10 @@ export function formatDeltaPts(delta: number): string {
   const sign = pts > 0 ? "+" : ""
   return `${sign}${pts} pts`
 }
+
+/** Two-letter monogram from an entity name, e.g. "FCMB Bank" → "FB". */
+export function monogram(name: string): string {
+  const words = name.trim().split(/\s+/)
+  if (words.length === 1) return words[0].slice(0, 2).toUpperCase()
+  return (words[0][0] + words[1][0]).toUpperCase()
+}

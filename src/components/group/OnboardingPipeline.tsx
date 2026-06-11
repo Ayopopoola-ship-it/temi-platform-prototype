@@ -1,22 +1,22 @@
-import {
-  Check,
-  Scale,
-  Shield,
-  ShieldAlert,
-  ShieldCheck,
-  type LucideIcon,
-} from "lucide-react"
+import { Check, Scale, Shield, ShieldAlert, ShieldCheck } from "lucide-react"
 import type { OnboardingStage, StageStatus } from "@/types"
 import { cn } from "@/lib/utils"
 import { StageStatusBadge } from "./StatusBadge"
 
 /* ---------------------------------------------------------------- node ---- */
 
-function gateIcon(stage: OnboardingStage): LucideIcon {
-  if (stage.key === "compliance") return Scale
-  if (stage.status === "blocked") return ShieldAlert
-  if (stage.status === "complete") return ShieldCheck
-  return Shield
+/** The gate marker glyph, rendered directly (no component created in render). */
+function GateGlyph({
+  stage,
+  className,
+}: {
+  stage: OnboardingStage
+  className?: string
+}) {
+  if (stage.key === "compliance") return <Scale className={className} />
+  if (stage.status === "blocked") return <ShieldAlert className={className} />
+  if (stage.status === "complete") return <ShieldCheck className={className} />
+  return <Shield className={className} />
 }
 
 const GATE_TONE: Record<StageStatus, string> = {
@@ -48,7 +48,6 @@ function NodeMarker({
   const iconSize = size === "md" ? "size-4" : "size-3.5"
 
   if (stage.isGate) {
-    const Icon = gateIcon(stage)
     return (
       <span
         className={cn(
@@ -57,7 +56,7 @@ function NodeMarker({
           GATE_TONE[stage.status]
         )}
       >
-        <Icon className={cn("-rotate-45", iconSize)} />
+        <GateGlyph stage={stage} className={cn("-rotate-45", iconSize)} />
         {stage.status === "blocked" && (
           <span className="absolute inset-0 -rotate-0 animate-ping rounded-md bg-status-red/30" />
         )}

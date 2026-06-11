@@ -14,7 +14,7 @@ import { getEntityById } from "@/data/entities"
 import { getAnalyticsByEntity } from "@/data/analytics"
 import { SECURITY_ITEMS } from "@/data/securityItems"
 import { getOnboardingForEntity, stageLabel } from "@/data/onboarding"
-import { formatNumber, formatPercent } from "@/lib/format"
+import { formatNumber, formatPercent, monogram } from "@/lib/format"
 import { PageHeader } from "@/components/layout/PageHeader"
 import { StatCard } from "@/components/group/StatCard"
 import { TrendChart } from "@/components/group/TrendChart"
@@ -26,7 +26,6 @@ import {
   SecuritySeverityBadge,
   SecurityStatusBadge,
 } from "@/components/group/StatusBadge"
-import { monogram } from "@/components/group/EntityCard"
 
 function SectionCard({
   title,
