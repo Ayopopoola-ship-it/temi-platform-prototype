@@ -15,6 +15,7 @@ import {
 } from "lucide-react"
 import type { ReactNode } from "react"
 import { PersonaProvider } from "@/context/PersonaContext"
+import { FlowsProvider } from "@/context/FlowsContext"
 import { AppShell } from "@/components/layout/AppShell"
 import { PlaceholderPage } from "@/components/layout/PlaceholderPage"
 import CustomerChatDemo from "@/pages/CustomerChatDemo"
@@ -25,6 +26,8 @@ import GroupPipeline from "@/pages/group/Pipeline"
 import GroupSecurity from "@/pages/group/Security"
 import EntityDashboard from "@/pages/entity/Dashboard"
 import EntityKnowledgeBase from "@/pages/entity/KnowledgeBase"
+import EntityFlows from "@/pages/entity/Flows"
+import EntityFlowEditor from "@/pages/entity/FlowEditor"
 import EntityChannels from "@/pages/entity/Channels"
 import EntityEscalation from "@/pages/entity/Escalation"
 import EntityCapabilities from "@/pages/entity/Capabilities"
@@ -155,6 +158,7 @@ const GROUP_PAGES: Record<string, ReactNode> = {
 const ENTITY_PAGES: Record<string, ReactNode> = {
   dashboard: <EntityDashboard />,
   "knowledge-base": <EntityKnowledgeBase />,
+  flows: <EntityFlows />,
   channels: <EntityChannels />,
   escalation: <EntityEscalation />,
   capabilities: <EntityCapabilities />,
@@ -165,7 +169,8 @@ function App() {
   return (
     <BrowserRouter>
       <PersonaProvider>
-        <Routes>
+        <FlowsProvider>
+          <Routes>
           <Route path="/" element={<AppShell />}>
             {/* "/" and unknown paths are redirected to the active persona's
                 landing page by the shell's route guard. */}
@@ -209,10 +214,14 @@ function App() {
               />
             ))}
 
+            {/* Flow Builder — full-page editor (CLAUDE.md §8) */}
+            <Route path="entity/flows/:flowId" element={<EntityFlowEditor />} />
+
             <Route path="chat" element={<CustomerChatDemo />} />
             <Route path="*" element={null} />
           </Route>
-        </Routes>
+          </Routes>
+        </FlowsProvider>
       </PersonaProvider>
     </BrowserRouter>
   )
