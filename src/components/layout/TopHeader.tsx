@@ -5,12 +5,15 @@ import {
   LogOut,
   Menu,
   MessagesSquare,
+  Rocket,
   Search,
   UserRound,
   type LucideIcon,
 } from "lucide-react"
+import { format, parseISO } from "date-fns"
 import type { ExperienceKind } from "@/types"
 import { usePersona } from "@/context/PersonaContext"
+import { useOnboarding } from "@/context/OnboardingContext"
 import { cn } from "@/lib/utils"
 import { PersonaSwitcher } from "./PersonaSwitcher"
 import {
@@ -88,14 +91,7 @@ export function TopHeader({ hasSidebar, onMenuClick }: TopHeaderProps) {
           <div className="ml-auto flex items-center gap-2 sm:gap-2.5">
             <HeaderSearch />
 
-            <button
-              type="button"
-              aria-label="Notifications"
-              className="relative flex size-9 items-center justify-center rounded-md text-text-secondary transition-colors hover:bg-fcmb-offwhite hover:text-text-primary"
-            >
-              <Bell className="size-[18px]" />
-              <span className="absolute top-2 right-2 size-1.5 rounded-full bg-status-red ring-2 ring-card" />
-            </button>
+            <NotificationBell />
 
             <PersonaSwitcher />
 
@@ -106,6 +102,79 @@ export function TopHeader({ hasSidebar, onMenuClick }: TopHeaderProps) {
         </div>
       </div>
     </header>
+  )
+}
+
+function NotificationBell() {
+  const { persona } = usePersona()
+  const { notifications, markNotificationsRead } = useOnboarding()
+
+  // Platform notifications are addressed to the Temi platform team and are
+  // surfaced in the Group Console only (CLAUDE.md §3, tenant separation).
+  const visible = persona.experience === "group" ? notifications : []
+  const unread = visible.filter((n) => !n.read).length
+
+  return (
+    <DropdownMenu
+      onOpenChange={(open) => {
+        if (open && unread > 0) markNotificationsRead()
+      }}
+    >
+      <DropdownMenuTrigger asChild>
+        <button
+          type="button"
+          aria-label={
+            unread > 0 ? `Notifications, ${unread} unread` : "Notifications"
+          }
+          className="relative flex size-9 items-center justify-center rounded-md text-text-secondary transition-colors hover:bg-fcmb-offwhite hover:text-text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+        >
+          <Bell className="size-[18px]" />
+          {unread > 0 && (
+            <span className="absolute top-1.5 right-1.5 flex min-w-4 items-center justify-center rounded-full bg-status-red px-1 text-[10px] font-semibold leading-4 text-white ring-2 ring-card">
+              {unread}
+            </span>
+          )}
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="w-80 p-0">
+        <DropdownMenuLabel className="px-4 py-3 text-sm font-semibold text-text-primary">
+          Notifications
+        </DropdownMenuLabel>
+        <DropdownMenuSeparator className="my-0" />
+        {visible.length === 0 ? (
+          <div className="px-4 py-8 text-center">
+            <span className="mx-auto flex size-9 items-center justify-center rounded-full bg-fcmb-offwhite text-disabled">
+              <Bell className="size-4" />
+            </span>
+            <p className="mt-2 text-sm font-medium text-text-primary">
+              You're all caught up
+            </p>
+            <p className="mt-0.5 text-xs text-text-secondary">
+              New platform activity will show up here.
+            </p>
+          </div>
+        ) : (
+          <ul className="max-h-80 overflow-auto py-1">
+            {visible.map((n) => (
+              <li key={n.id} className="flex gap-2.5 px-4 py-2.5">
+                <span className="mt-1 flex size-7 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <Rocket className="size-3.5" />
+                </span>
+                <div className="min-w-0">
+                  <p className="text-sm font-medium text-text-primary">
+                    {n.title}
+                  </p>
+                  <p className="text-xs text-text-secondary">{n.body}</p>
+                  <p className="mt-0.5 text-[11px] text-disabled">
+                    {format(parseISO(n.timestamp), "d MMM yyyy, HH:mm")}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }
 

@@ -261,3 +261,55 @@ export const REVIEW_STATUS_META: Record<
     dot: "bg-status-green",
   },
 }
+
+/**
+ * A ready-made Balance Enquiry flow used as the "start from a template" option
+ * in the onboarding wizard. Steps are model-mode placeholders a new entity can
+ * customise (CLAUDE.md §8.3). Fresh step ids are generated per call.
+ */
+export function balanceEnquiryTemplate(): {
+  name: string
+  description: string
+  steps: FlowStep[]
+} {
+  const id = (suffix: string) => `tmpl-${Date.now()}-${suffix}`
+  const steps: FlowStep[] = [
+    {
+      id: id("identify"),
+      type: "collectInput",
+      inputName: "Account identifier",
+      inputType: "account",
+      prompt: "Please share your account number so I can locate your holdings.",
+    },
+    {
+      id: id("validate"),
+      type: "validate",
+      rule: "Account identifier matches an active customer record",
+      dataSource: "Customer registry (placeholder)",
+    },
+    {
+      id: id("action"),
+      type: "action",
+      description:
+        "Retrieve the customer's current balance from the registry (placeholder: would read balance).",
+      modelModeOnly: true,
+    },
+    {
+      id: id("message"),
+      type: "message",
+      text: "Here is your current balance: {balance_summary}.",
+    },
+    {
+      id: id("escalate"),
+      type: "escalate",
+      team: "Customer Support Team",
+      reason: "Customer wants to speak to a person about their balance.",
+    },
+  ]
+  return {
+    name: "Balance Enquiry",
+    description:
+      "Started from a template. Customer asks for their balance. Customise these placeholder steps for CSL Stockbrokers.",
+    steps,
+  }
+}

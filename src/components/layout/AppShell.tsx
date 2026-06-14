@@ -29,9 +29,11 @@ export function AppShell() {
   const hasSidebar = persona.experience !== "customer"
 
   // Keep the route in sync with the active persona. Switching persona (or
-  // landing on a foreign URL) redirects to that experience's landing page.
+  // landing on a foreign URL) redirects to that persona's landing page. A
+  // brand-new entity admin lands on the onboarding wizard (CLAUDE.md §3).
+  const landing = persona.landingPath ?? EXPERIENCE_LANDING[persona.experience]
   if (!location.pathname.startsWith(EXPERIENCE_BASE[persona.experience])) {
-    return <Navigate to={EXPERIENCE_LANDING[persona.experience]} replace />
+    return <Navigate to={landing} replace />
   }
 
   const renderSidebar = (onNavigate?: () => void) =>

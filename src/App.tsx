@@ -16,6 +16,7 @@ import {
 import type { ReactNode } from "react"
 import { PersonaProvider } from "@/context/PersonaContext"
 import { FlowsProvider } from "@/context/FlowsContext"
+import { OnboardingProvider } from "@/context/OnboardingContext"
 import { AppShell } from "@/components/layout/AppShell"
 import { PlaceholderPage } from "@/components/layout/PlaceholderPage"
 import CustomerChatDemo from "@/pages/CustomerChatDemo"
@@ -28,6 +29,7 @@ import EntityDashboard from "@/pages/entity/Dashboard"
 import EntityKnowledgeBase from "@/pages/entity/KnowledgeBase"
 import EntityFlows from "@/pages/entity/Flows"
 import EntityFlowEditor from "@/pages/entity/FlowEditor"
+import EntityOnboardingWizard from "@/pages/entity/OnboardingWizard"
 import EntityChannels from "@/pages/entity/Channels"
 import EntityEscalation from "@/pages/entity/Escalation"
 import EntityCapabilities from "@/pages/entity/Capabilities"
@@ -170,6 +172,7 @@ function App() {
     <BrowserRouter>
       <PersonaProvider>
         <FlowsProvider>
+          <OnboardingProvider>
           <Routes>
           <Route path="/" element={<AppShell />}>
             {/* "/" and unknown paths are redirected to the active persona's
@@ -217,10 +220,14 @@ function App() {
             {/* Flow Builder - full-page editor (CLAUDE.md §8) */}
             <Route path="entity/flows/:flowId" element={<EntityFlowEditor />} />
 
+            {/* First-time entity onboarding wizard (CSL Admin persona) */}
+            <Route path="entity/onboard" element={<EntityOnboardingWizard />} />
+
             <Route path="chat" element={<CustomerChatDemo />} />
             <Route path="*" element={null} />
           </Route>
           </Routes>
+          </OnboardingProvider>
         </FlowsProvider>
       </PersonaProvider>
     </BrowserRouter>

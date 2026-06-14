@@ -6,7 +6,7 @@ import {
   useState,
   type ReactNode,
 } from "react"
-import type { Flow } from "@/types"
+import type { Flow, FlowStep } from "@/types"
 import { FLOWS } from "@/data/flows"
 import { makeAuditEntry } from "@/lib/audit"
 
@@ -22,8 +22,15 @@ interface FlowsContextValue {
   flowsForEntity: (entityId: string) => Flow[]
   /** A single flow by id (caller checks it belongs to the active entity). */
   flowById: (flowId: string) => Flow | undefined
-  /** Create a new draft flow for an entity; returns its id. */
-  createFlow: (entityId: string, actor: string) => string
+  /**
+   * Create a new draft flow for an entity; returns its id. Pass a `seed` to
+   * preload a name, description and steps (used by the onboarding template).
+   */
+  createFlow: (
+    entityId: string,
+    actor: string,
+    seed?: { name?: string; description?: string; steps?: FlowStep[] }
+  ) => string
   /** Replace a flow via an updater function. */
   updateFlow: (flowId: string, updater: (flow: Flow) => Flow) => void
   /** Delete a flow. */
@@ -50,32 +57,49 @@ export function FlowsProvider({ children }: { children: ReactNode }) {
     [flows]
   )
 
-  const createFlow = useCallback((entityId: string, actor: string) => {
-    const id = `flow-new-${Date.now()}`
-    const now = new Date().toISOString()
-    const flow: Flow = {
-      id,
-      entityId,
-      name: "Untitled flow",
-      description: "",
-      reviewStatus: "Draft",
-      executionCandidate: false,
-      steps: [],
-      versions: [
-        {
-          version: 1,
-          reviewStatus: "Draft",
-          savedAt: now,
-          savedBy: actor,
-          note: "New flow created.",
-        },
-      ],
-      auditLog: [makeAuditEntry(actor, "Created a new flow")],
-      updatedAt: now,
-    }
-    setFlows((prev) => [flow, ...prev])
-    return id
-  }, [])
+  const createFlow = useCallback(
+    (
+      entityId: string,
+      actor: string,
+      seed?: { name?: string; description?: string; steps?: FlowStep[] }
+    ) => {
+      const id = `flow-new-${Date.now()}`
+      const now = new Date().toISOString()
+      const fromTemplate = !!seed?.steps?.length
+      const flow: Flow = {
+        id,
+        entityId,
+        name: seed?.name ?? "Untitled flow",
+        description: seed?.description ?? "",
+        reviewStatus: "Draft",
+        executionCandidate: false,
+        steps: seed?.steps ?? [],
+        versions: [
+          {
+            version: 1,
+            reviewStatus: "Draft",
+            savedAt: now,
+            savedBy: actor,
+            note: fromTemplate
+              ? "Started from a template."
+              : "New flow created.",
+          },
+        ],
+        auditLog: [
+          makeAuditEntry(
+            actor,
+            fromTemplate
+              ? `Started flow “${seed?.name ?? "Untitled flow"}” from a template`
+              : "Created a new flow"
+          ),
+        ],
+        updatedAt: now,
+      }
+      setFlows((prev) => [flow, ...prev])
+      return id
+    },
+    []
+  )
 
   const updateFlow = useCallback(
     (flowId: string, updater: (flow: Flow) => Flow) => {

@@ -122,7 +122,8 @@ const CSL_PIPELINE: OnboardingStage[] = [
     label: STAGE_LABELS.scoping,
     isGate: false,
     status: "in-progress",
-    outstanding: "Entity scope and intent catalogue being defined with CSL.",
+    outstanding:
+      "Onboarding request received from CSL; entity scope and intent catalogue being defined.",
   },
   {
     key: "kb-prep",

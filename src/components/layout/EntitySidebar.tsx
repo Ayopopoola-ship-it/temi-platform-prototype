@@ -6,6 +6,7 @@ import {
   Headset,
   LayoutDashboard,
   Radio,
+  Rocket,
   Settings,
   Workflow,
 } from "lucide-react"
@@ -24,18 +25,28 @@ const ENTITY_NAV: SidebarNavItem[] = [
   { to: "/entity/settings", label: "Settings", icon: Settings },
 ]
 
+/**
+ * A brand-new entity (a persona with the onboarding landing path) gets a
+ * focused sidebar: just the guided wizard, until they finish setting up.
+ */
+const ONBOARDING_NAV: SidebarNavItem[] = [
+  { to: "/entity/onboard", label: "Onboarding", icon: Rocket },
+  { to: "/entity/flows", label: "Flows", icon: Workflow },
+]
+
 interface EntitySidebarProps {
   onNavigate?: () => void
 }
 
 export function EntitySidebar({ onNavigate }: EntitySidebarProps) {
   const { persona } = usePersona()
+  const onboarding = persona.landingPath === "/entity/onboard"
   return (
     <SidebarNav
       consoleLabel="Entity Console"
       scopeLabel={persona.entityName}
       scopeIcon={Building2}
-      items={ENTITY_NAV}
+      items={onboarding ? ONBOARDING_NAV : ENTITY_NAV}
       onNavigate={onNavigate}
     />
   )

@@ -49,6 +49,12 @@ export interface Persona {
   avatarInitial: string
   /** Why this persona exists in the prototype (from the §4 table). */
   purpose: string
+  /**
+   * Where this persona lands instead of the default experience landing page.
+   * A brand-new entity admin lands on the onboarding wizard rather than the
+   * normal entity dashboard.
+   */
+  landingPath?: string
 }
 
 /* =================================================================

@@ -48,6 +48,18 @@ export const PERSONAS: Persona[] = [
     avatarInitial: "CU",
     purpose: "Demonstrates the customer support conversation experience.",
   },
+  {
+    id: "csl-admin",
+    name: "CSL Admin",
+    role: "Entity Admin (New)",
+    experience: "entity",
+    entityId: "csl-stockbrokers",
+    entityName: "CSL Stockbrokers",
+    avatarInitial: "C",
+    purpose:
+      "A new entity just invited onto the platform, with nothing configured yet. Lands on the guided onboarding wizard.",
+    landingPath: "/entity/onboard",
+  },
 ]
 
 /** The default persona on first load (CLAUDE.md §4 - Temi Platform Admin). */
