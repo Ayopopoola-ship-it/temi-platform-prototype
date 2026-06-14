@@ -51,7 +51,7 @@ function fadeIn(delay = 0) {
 }
 
 function TextBubble({ event }: { event: TextEvent }) {
-  if (event.sender === "investor") {
+  if (event.sender === "customer") {
     return (
       <motion.div {...fadeIn()} className="flex justify-end">
         <div className="max-w-[82%]">
@@ -240,13 +240,13 @@ export default function CustomerChatDemo() {
   }
 
   // Drive the script forward one event at a time, with a typing pause before
-  // each agent/human turn. Stops when the script ends — it never loops.
+  // each agent/human turn. Stops when the script ends; it never loops.
   useEffect(() => {
     if (revealed >= CHAT_SCRIPT.length) return
     const next = CHAT_SCRIPT[revealed]
     const sender = eventSender(next)
 
-    if (sender === "investor") {
+    if (sender === "customer") {
       timers.current.push(
         window.setTimeout(() => setRevealed((r) => r + 1), 750)
       )
@@ -352,7 +352,7 @@ export default function CustomerChatDemo() {
           </AnimatePresence>
         </div>
 
-        {/* Inert composer — this is a scripted demo, not a live input */}
+        {/* Inert composer: this is a scripted demo, not a live input */}
         <div className="flex items-center gap-2 border-t border-border bg-card px-3 py-2.5">
           <div className="flex-1 rounded-full bg-fcmb-offwhite px-3.5 py-2 text-sm text-disabled">
             Message Temi…

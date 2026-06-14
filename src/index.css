@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 /* =================================================================
-   Temi Platform Prototype — FCMB Design System (CLAUDE.md §5)
+   Temi Platform Prototype - FCMB Design System (CLAUDE.md §5)
    Tailwind v4, CSS-first. Light mode only for V1 (dark mode is
-   explicitly out of scope — see CLAUDE.md §15).
+   explicitly out of scope - see CLAUDE.md §15).
    ================================================================= */
 
 :root {

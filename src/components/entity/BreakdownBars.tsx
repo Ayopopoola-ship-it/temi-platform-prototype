@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils"
 
 /**
  * A labelled horizontal-bar breakdown with per-row percentages. Pure CSS (no
- * chart lib) so it handles zero-value rows gracefully — used for the channel
+ * chart lib) so it handles zero-value rows gracefully - used for the channel
  * split, where only some channels are live.
  */
 export function BreakdownBars({

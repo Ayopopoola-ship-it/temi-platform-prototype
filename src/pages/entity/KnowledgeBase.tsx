@@ -33,19 +33,19 @@ function seedLog(entityId: string): AuditEntry[] {
     {
       id: "seed-kb-1",
       actor: "FADE",
-      action: 'Uploaded "KYC & Account Opening — FAQ" (v1) — queued for indexing',
+      action: 'Uploaded "KYC & Account Opening FAQ" (v1), queued for indexing',
       timestamp: "2026-06-05T09:30:00",
     },
     {
       id: "seed-kb-2",
       actor: "FADE",
-      action: 'Activated v2 of "NAV & Pricing — FAQ" — now serving',
+      action: 'Activated v2 of "NAV & Pricing FAQ", now serving',
       timestamp: "2026-05-14T10:12:00",
     },
     {
       id: "seed-kb-3",
       actor: "Temi Onboarding Team",
-      action: 'Indexed "Equity Fund — Factsheet" (v3) — ready to activate',
+      action: 'Indexed "Equity Fund Factsheet" (v3), ready to activate',
       timestamp: "2026-05-06T14:03:00",
     },
   ]
@@ -133,20 +133,20 @@ function KnowledgeBaseInner({
             uploadedAt: TODAY,
             uploadedBy: actor,
             active: false,
-            note: "Just uploaded — queued for indexing.",
+            note: "Just uploaded, queued for indexing.",
           },
         ],
         updatedAt: TODAY,
       }
       setDocuments((prev) => [doc, ...prev])
-      addLog(`Uploaded "${f.name}" (v1) — queued for indexing`)
+      addLog(`Uploaded "${f.name}" (v1), queued for indexing`)
       // Simulate ingestion completing.
       window.setTimeout(() => {
         if (!mounted.current) return
         setDocuments((prev) =>
           prev.map((d) => (d.id === id ? { ...d, status: "Indexed" } : d))
         )
-        addLog(`Indexed "${f.name}" (v1) — ready to activate`)
+        addLog(`Indexed "${f.name}" (v1), ready to activate`)
       }, 1600)
     })
   }
@@ -168,7 +168,7 @@ function KnowledgeBaseInner({
           : d
       )
     )
-    addLog(`Activated v${version} of "${doc.name}" — now serving`)
+    addLog(`Activated v${version} of "${doc.name}", now serving`)
   }
 
   const deactivateVersion = (doc: KBDocument, version: number) => {
@@ -187,7 +187,7 @@ function KnowledgeBaseInner({
           : d
       )
     )
-    addLog(`Deactivated v${version} of "${doc.name}" — no version now serving`)
+    addLog(`Deactivated v${version} of "${doc.name}"; no version now serving`)
   }
 
   const addVersion = (doc: KBDocument) => {
@@ -206,7 +206,7 @@ function KnowledgeBaseInner({
                   uploadedAt: TODAY,
                   uploadedBy: actor,
                   active: false,
-                  note: "New version — awaiting review before activation.",
+                  note: "New version, awaiting review before activation.",
                 },
               ],
             }
@@ -214,7 +214,7 @@ function KnowledgeBaseInner({
       )
     )
     setExpanded((prev) => new Set(prev).add(doc.id))
-    addLog(`Uploaded v${next} of "${doc.name}" — indexing, current version still serving`)
+    addLog(`Uploaded v${next} of "${doc.name}"; indexing, current version still serving`)
   }
 
   const counts = {
@@ -430,7 +430,7 @@ function KnowledgeBaseInner({
                     variant="ghost"
                     size="xs"
                     onClick={() =>
-                      // Placeholder — authoring a doc from a gap is a later phase.
+                      // Placeholder: authoring a doc from a gap is a later phase.
                       console.log("[prototype] address gap:", g.id)
                     }
                   >

@@ -7,7 +7,7 @@ import type { EntityAnalytics, TimeSeriesPoint } from "@/types"
  * knowledge base matures.
  *
  * The Asset Management intent breakdown is PLACEHOLDER data pending FADE's
- * input (OQ-A, OQ-B) — do not treat the fund intents as confirmed.
+ * input (OQ-A, OQ-B) - do not treat the fund intents as confirmed.
  */
 const WEEKS = [
   "2026-03-16",

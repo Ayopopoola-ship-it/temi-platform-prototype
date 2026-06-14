@@ -5,7 +5,7 @@ import type { Capability } from "@/types"
  * reflects FCMB Asset Management's configuration (FADE's console).
  *
  * Advice-type capabilities are shown but locked OFF and not toggleable for
- * Asset Management — the agent explains and informs, it never recommends,
+ * Asset Management - the agent explains and informs, it never recommends,
  * projects returns, or assesses suitability (CLAUDE.md §9.3). Capabilities not
  * yet available are marked "v2.0".
  */
@@ -64,7 +64,7 @@ export const CAPABILITIES: Capability[] = [
     id: "cap-flow-builder",
     name: "Flow Builder (model mode)",
     description:
-      "Design transactional flows as explicit, reviewable sequences. Model mode only — flows do not execute (CLAUDE.md §9.1).",
+      "Design transactional flows as explicit, reviewable sequences. Model mode only; flows do not execute (CLAUDE.md §9.1).",
     category: "Workflow",
     availability: "available",
     enabled: true,
@@ -74,7 +74,7 @@ export const CAPABILITIES: Capability[] = [
     id: "cap-live-transactions",
     name: "Live transaction execution",
     description:
-      "Execute real transactions (subscriptions, redemptions) from a flow. Not available in V1 — flows are model mode only.",
+      "Execute real transactions (subscriptions, redemptions) from a flow. Not available in V1; flows are model mode only.",
     category: "Transactions",
     availability: "v2.0",
     enabled: false,
@@ -106,7 +106,7 @@ export const CAPABILITIES: Capability[] = [
     adviceType: true,
     locked: true,
     complianceNote:
-      "Not available to FCMB Asset Management — the agent does not project returns (CLAUDE.md §9.3).",
+      "Not available to FCMB Asset Management: the agent does not project returns (CLAUDE.md §9.3).",
   },
   {
     id: "cap-suitability",
@@ -119,6 +119,6 @@ export const CAPABILITIES: Capability[] = [
     adviceType: true,
     locked: true,
     complianceNote:
-      "Not available to FCMB Asset Management — the agent does not assess suitability (CLAUDE.md §9.3).",
+      "Not available to FCMB Asset Management: the agent does not assess suitability (CLAUDE.md §9.3).",
   },
 ]

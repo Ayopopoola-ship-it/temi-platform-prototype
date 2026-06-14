@@ -129,7 +129,7 @@ export default function EntityDetail() {
             hasTraffic ? (
               formatNumber(entity.metrics.conversationVolume)
             ) : (
-              <span className="text-disabled">—</span>
+              <span className="text-disabled">–</span>
             )
           }
           sub={hasTraffic ? "Last 12 weeks" : "No live traffic yet"}
@@ -141,7 +141,7 @@ export default function EntityDetail() {
             hasTraffic ? (
               formatPercent(entity.metrics.aiResolutionRate)
             ) : (
-              <span className="text-disabled">—</span>
+              <span className="text-disabled">–</span>
             )
           }
         />
@@ -152,7 +152,7 @@ export default function EntityDetail() {
             hasTraffic ? (
               formatPercent(entity.metrics.escalationRate)
             ) : (
-              <span className="text-disabled">—</span>
+              <span className="text-disabled">–</span>
             )
           }
         />
@@ -165,7 +165,7 @@ export default function EntityDetail() {
             ) : knowledgeGapCount !== undefined ? (
               formatNumber(knowledgeGapCount)
             ) : (
-              <span className="text-disabled">—</span>
+              <span className="text-disabled">–</span>
             )
           }
           sub={

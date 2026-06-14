@@ -91,8 +91,8 @@ export function EntityCard({ entity }: { entity: Entity }) {
             <p className="line-clamp-2 text-xs text-text-secondary">
               {entity.note ??
                 (entity.status === "Onboarding"
-                  ? "Onboarding in progress — no live traffic yet."
-                  : "Queued for onboarding — not yet live.")}
+                  ? "Onboarding in progress; no live traffic yet."
+                  : "Queued for onboarding, not yet live.")}
             </p>
           </div>
         )}

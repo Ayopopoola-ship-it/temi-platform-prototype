@@ -4,7 +4,7 @@ import type { Entity } from "@/types"
 
 /**
  * Per-entity security signal derived from its open P0/P1 counts. Reinforces the
- * security story at the entity level (CLAUDE.md §9.4) — red for any open P0,
+ * security story at the entity level (CLAUDE.md §9.4) - red for any open P0,
  * amber for P1-only, green when clear.
  */
 export function EntitySecurityChip({

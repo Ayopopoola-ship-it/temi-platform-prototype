@@ -14,7 +14,7 @@ interface PageHeaderProps {
 }
 
 /**
- * Standard console page header — icon tile, title, supporting copy, and an
+ * Standard console page header - icon tile, title, supporting copy, and an
  * optional actions slot. Mirrors the PlaceholderPage header so real and stubbed
  * screens stay visually consistent (CLAUDE.md §5).
  */

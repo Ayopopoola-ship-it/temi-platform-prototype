@@ -22,7 +22,7 @@ interface SidebarNavProps {
 
 /**
  * Presentational sidebar shared by both consoles. The active item is backed by
- * a single Framer Motion pill (shared `layoutId`) so it glides between items —
+ * a single Framer Motion pill (shared `layoutId`) so it glides between items -
  * the small moment of polish that lifts this above a stock admin nav.
  */
 export function SidebarNav({
@@ -34,7 +34,7 @@ export function SidebarNav({
 }: SidebarNavProps) {
   return (
     <div className="flex h-full flex-col bg-sidebar">
-      {/* Active-context indicator — which experience + which entity (CLAUDE.md §3) */}
+      {/* Active-context indicator - which experience + which entity (CLAUDE.md §3) */}
       <div className="px-3 pt-4 pb-3">
         <div className="flex items-center gap-3 rounded-lg border border-border bg-fcmb-offwhite/70 px-3 py-2.5">
           <span className="flex size-9 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary">

@@ -25,12 +25,12 @@ function ModelModeBanner() {
       </span>
       <div className="min-w-0">
         <p className="text-sm font-semibold text-text-primary">
-          Model mode — flows are designed and reviewed, never executed
+          Model mode: flows are designed and reviewed, never executed
         </p>
         <p className="mt-0.5 text-sm text-text-secondary">
           Flows are an explicit, versioned, reviewable specification of what the
           agent would do. Every Action step is a placeholder describing a
-          transaction that would occur in production — nothing here runs.
+          transaction that would occur in production. Nothing here runs.
         </p>
       </div>
     </div>
@@ -107,7 +107,7 @@ function FlowsInner({
         icon={Workflow}
         title="Flows"
         eyebrow={entityName}
-        description="Design the transactional flows the agent follows — as an explicit, ordered, reviewable sequence. Model mode only."
+        description="Design the transactional flows the agent follows, as an explicit, ordered, reviewable sequence. Model mode only."
         actions={
           <Button onClick={handleNew}>
             <Plus /> New flow
@@ -154,7 +154,7 @@ function FlowsInner({
 
 export default function Flows() {
   const { persona } = usePersona()
-  // key on entityId so switching persona fully remounts — one entity's flow
+  // key on entityId so switching persona fully remounts - one entity's flow
   // list state can never leak into another (tenant isolation, §9.2).
   return (
     <FlowsInner

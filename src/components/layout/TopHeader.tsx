@@ -47,7 +47,7 @@ export function TopHeader({ hasSidebar, onMenuClick }: TopHeaderProps) {
   return (
     <header className="sticky top-0 z-40 h-16 border-b border-border bg-card/85 backdrop-blur supports-[backdrop-filter]:bg-card/75">
       <div className="flex h-full items-center">
-        {/* Brand block — aligns with the sidebar column on desktop */}
+        {/* Brand block - aligns with the sidebar column on desktop */}
         <div
           className={cn(
             "flex h-full items-center gap-2 px-4",
@@ -171,7 +171,7 @@ function UserMenu() {
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <div className="px-2 py-1.5 text-[11px] text-disabled">
-          Prototype — no real account or authentication.
+          Prototype: no real account or authentication.
         </div>
       </DropdownMenuContent>
     </DropdownMenu>

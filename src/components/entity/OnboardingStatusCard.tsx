@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 /**
  * Compact onboarding-status indicator for the entity Dashboard (CLAUDE.md §7.6):
  * where this entity sits in the playbook, its progress, and any blocking gate.
- * Entity-scoped — no link into the Group Console.
+ * Entity-scoped - no link into the Group Console.
  */
 export function OnboardingStatusCard({
   entity,
@@ -16,7 +16,7 @@ export function OnboardingStatusCard({
   entity: Entity
   stages?: OnboardingStage[]
 }) {
-  // Live reference tenant — no active onboarding.
+  // Live reference tenant - no active onboarding.
   if (entity.status === "Live") {
     return (
       <div className="flex items-center gap-3 rounded-xl border border-status-green/30 bg-status-green/[0.05] p-4">

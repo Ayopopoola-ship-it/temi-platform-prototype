@@ -67,7 +67,7 @@ export function CsatDistribution({ data }: { data: BreakdownSlice[] }) {
             <span className="ml-auto tabular-nums text-text-secondary">
               {formatNumber(d.value)}
               <span className="ml-1.5 text-text-primary">
-                {total > 0 ? formatPercent(d.value / total) : "—"}
+                {total > 0 ? formatPercent(d.value / total) : "–"}
               </span>
             </span>
           </li>

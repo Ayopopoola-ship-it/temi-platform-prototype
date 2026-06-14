@@ -11,7 +11,7 @@ function stamp(iso: string): string {
 }
 
 /**
- * Audit trail panel — every change shown as logged with actor and timestamp
+ * Audit trail panel - every change shown as logged with actor and timestamp
  * (CLAUDE.md §7.7, §9.2). Newest first; freshly logged actions animate in.
  */
 export function ActivityLog({

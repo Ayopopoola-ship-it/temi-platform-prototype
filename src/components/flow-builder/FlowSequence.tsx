@@ -297,7 +297,7 @@ function StepList({
   )
 }
 
-/** The full vertical flow sequence — the signature Flow Builder surface. */
+/** The full vertical flow sequence - the signature Flow Builder surface. */
 export function FlowSequence({
   steps,
   ops,

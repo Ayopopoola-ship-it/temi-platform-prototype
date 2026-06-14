@@ -3,7 +3,7 @@
  *
  * Derived from CLAUDE.md §3 (the three experiences), §7 (V1 scope per
  * screen), and §8 (Flow Builder spec). These are intentionally allowed to
- * evolve as screens are built out — keep them honest to the spec, not frozen.
+ * evolve as screens are built out - keep them honest to the spec, not frozen.
  */
 
 /* =================================================================
@@ -15,7 +15,7 @@ export type ISODateString = string
 
 /**
  * An audit trail entry. Tenant access and admin edits are "shown as logged"
- * throughout the product (CLAUDE.md §3, §7, §9.2) — this is the shape of
+ * throughout the product (CLAUDE.md §3, §7, §9.2) - this is the shape of
  * that displayed log line.
  */
 export interface AuditEntry {
@@ -68,7 +68,7 @@ export interface EntityMetrics {
   aiResolutionRate: number
   /** Escalation rate, 0–1. */
   escalationRate: number
-  /** Customer satisfaction, 0–1 (optional — not every entity reports it). */
+  /** Customer satisfaction, 0–1 (optional - not every entity reports it). */
   csat?: number
   /** Count of unanswered-question knowledge gaps. */
   knowledgeGapCount?: number
@@ -160,7 +160,7 @@ export interface KnowledgeGap {
 }
 
 /* =================================================================
-   Flow Builder (CLAUDE.md §8 — model mode only, never executes)
+   Flow Builder (CLAUDE.md §8 - model mode only, never executes)
    ================================================================= */
 
 export type FlowReviewStatus = "Draft" | "In Review" | "Reviewed"
@@ -224,7 +224,7 @@ export interface DecisionStep extends FlowStepBase {
 
 /**
  * Describes a transaction that WOULD occur. ALWAYS non-executing and rendered
- * with the "MODEL MODE — does not execute" badge (CLAUDE.md §8, §9.1).
+ * with the "MODEL MODE - does not execute" badge (CLAUDE.md §8, §9.1).
  */
 export interface ActionStep extends FlowStepBase {
   type: "action"
@@ -284,7 +284,7 @@ export interface Flow {
   versions: FlowVersion[]
   /**
    * Marked as a candidate for (future) execution. For Asset Management this
-   * surfaces a "requires compliance review" flag — a v2.0 transition that is
+   * surfaces a "requires compliance review" flag - a v2.0 transition that is
    * shown but not actioned (CLAUDE.md §8).
    */
   executionCandidate?: boolean
@@ -327,7 +327,7 @@ export interface Capability {
   /**
    * Advice-type capability (recommends, projects returns, or assesses
    * suitability). These are locked off and not toggleable for Asset Management
-   * — the agent informs but never advises (CLAUDE.md §9.3).
+   * - the agent informs but never advises (CLAUDE.md §9.3).
    */
   adviceType: boolean
   /**

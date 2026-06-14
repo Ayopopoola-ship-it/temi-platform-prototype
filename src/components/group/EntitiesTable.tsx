@@ -87,7 +87,7 @@ export function EntitiesTable({ entities }: { entities: Entity[] }) {
           const v = getValue<number>()
           return (
             <span className="tabular-nums text-text-primary">
-              {v > 0 ? formatCompact(v) : <span className="text-disabled">—</span>}
+              {v > 0 ? formatCompact(v) : <span className="text-disabled">–</span>}
             </span>
           )
         },
@@ -103,7 +103,7 @@ export function EntitiesTable({ entities }: { entities: Entity[] }) {
               {formatPercent(e.metrics.aiResolutionRate)}
             </span>
           ) : (
-            <span className="text-disabled">—</span>
+            <span className="text-disabled">–</span>
           )
         },
       },
@@ -118,7 +118,7 @@ export function EntitiesTable({ entities }: { entities: Entity[] }) {
               {formatPercent(e.metrics.escalationRate)}
             </span>
           ) : (
-            <span className="text-disabled">—</span>
+            <span className="text-disabled">–</span>
           )
         },
       },

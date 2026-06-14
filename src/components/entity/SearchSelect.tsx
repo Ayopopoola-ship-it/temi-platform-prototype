@@ -14,7 +14,7 @@ interface SearchSelectProps {
 }
 
 /**
- * A search-with-autocomplete combobox (CLAUDE.md §9.7 — search boxes, not
+ * A search-with-autocomplete combobox (CLAUDE.md §9.7 - search boxes, not
  * dropdowns, where a list could be long). Type to filter, click or Enter to
  * select; with allowCustom, a typed value can be committed as a new option.
  */

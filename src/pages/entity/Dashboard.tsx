@@ -22,7 +22,7 @@ import { IntentBarChart } from "@/components/entity/IntentBarChart"
 
 export default function Dashboard() {
   const { persona } = usePersona()
-  // Strictly scoped to the active persona's entity — tenant isolation (§9.2).
+  // Strictly scoped to the active persona's entity - tenant isolation (§9.2).
   const entityId = persona.entityId
   const entity = getEntityById(entityId)
   const analytics = getAnalyticsByEntity(entityId)
@@ -49,7 +49,7 @@ export default function Dashboard() {
         icon={LayoutDashboard}
         title="Dashboard"
         eyebrow={entity.name}
-        description={`How ${entity.name}'s Temi agent is performing — volume, resolution, escalation, CSAT and knowledge gaps.`}
+        description={`How ${entity.name}'s Temi agent is performing: volume, resolution, escalation, CSAT and knowledge gaps.`}
       />
 
       {/* Onboarding status indicator */}
@@ -62,31 +62,31 @@ export default function Dashboard() {
         <StatCard
           label="Conversations"
           icon={MessagesSquare}
-          value={hasTraffic ? formatNumber(m.conversationVolume) : "—"}
+          value={hasTraffic ? formatNumber(m.conversationVolume) : "–"}
           sub="Last 12 weeks"
         />
         <StatCard
           label="AI resolution"
           icon={Target}
-          value={hasTraffic ? formatPercent(m.aiResolutionRate) : "—"}
+          value={hasTraffic ? formatPercent(m.aiResolutionRate) : "–"}
           sub="Resolved without a human"
         />
         <StatCard
           label="Escalation rate"
           icon={TrendingUp}
-          value={hasTraffic ? formatPercent(m.escalationRate) : "—"}
+          value={hasTraffic ? formatPercent(m.escalationRate) : "–"}
           sub="Handed to a human team"
         />
         <StatCard
           label="CSAT"
           icon={Smile}
-          value={m.csat !== undefined ? formatPercent(m.csat) : "—"}
+          value={m.csat !== undefined ? formatPercent(m.csat) : "–"}
           sub="Customer satisfaction"
         />
         <StatCard
           label="Knowledge gaps"
           icon={BookOpen}
-          value={m.knowledgeGapCount ?? "—"}
+          value={m.knowledgeGapCount ?? "–"}
           sub="Unanswered questions"
           to="/entity/knowledge-base"
         />

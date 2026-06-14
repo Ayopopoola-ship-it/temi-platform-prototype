@@ -2,14 +2,14 @@ import type { Flow } from "@/types"
 
 /**
  * Model-mode flows (CLAUDE.md §8). Flows are designed, versioned and reviewed
- * by humans — they DO NOT execute. Every Action step is a non-executing
- * placeholder rendered with the "MODEL MODE — does not execute" badge.
+ * by humans - they DO NOT execute. Every Action step is a non-executing
+ * placeholder rendered with the "MODEL MODE - does not execute" badge.
  *
  * The three FCMB Asset Management flows below are the pre-built pilot flows
  * from §8.3. Their step content is SENSIBLE PLACEHOLDER logic for a Nigerian
  * asset manager, drafted pending FADE's input on the real fund processes
  * (open questions OQ-A, OQ-B). They are intentionally left in "Draft" status
- * and labelled as placeholders — not confirmed fund process detail.
+ * and labelled as placeholders - not confirmed fund process detail.
  *
  * The FCMB Bank flows are reference examples for the already-live tenant,
  * shown for contrast (Reviewed status). Tenant isolation holds: each entity
@@ -25,7 +25,7 @@ const ASSET_FLOWS: Flow[] = [
     entityId: ASSET,
     name: "Balance Enquiry",
     description:
-      "Investor asks for their fund balance. Placeholder logic pending FADE's input (OQ-A).",
+      "Customer asks for their fund balance. Placeholder logic pending FADE's input (OQ-A).",
     reviewStatus: "Draft",
     executionCandidate: false,
     steps: [
@@ -40,14 +40,14 @@ const ASSET_FLOWS: Flow[] = [
       {
         id: "balance-validate",
         type: "validate",
-        rule: "Account identifier matches an active investor record",
-        dataSource: "Investor registry (placeholder)",
+        rule: "Account identifier matches an active customer record",
+        dataSource: "Customer registry (placeholder)",
       },
       {
         id: "balance-action",
         type: "action",
         description:
-          "Retrieve the investor's current fund balance from the registry (placeholder — would read balance).",
+          "Retrieve the customer's current fund balance from the registry (placeholder: would read balance).",
         modelModeOnly: true,
       },
       {
@@ -58,8 +58,8 @@ const ASSET_FLOWS: Flow[] = [
       {
         id: "balance-escalate",
         type: "escalate",
-        team: "Client Services",
-        reason: "Investor wants to speak to a person about their balance.",
+        team: "Customer Support Team",
+        reason: "Customer wants to speak to a person about their balance.",
       },
     ],
     versions: [
@@ -86,7 +86,7 @@ const ASSET_FLOWS: Flow[] = [
     entityId: ASSET,
     name: "Subscription (Top-up)",
     description:
-      "Investor tops up an existing fund holding. Placeholder logic pending FADE's input on minimums and process (OQ-A, OQ-B).",
+      "Customer tops up an existing fund holding. Placeholder logic pending FADE's input on minimums and process (OQ-A, OQ-B).",
     reviewStatus: "Draft",
     executionCandidate: false,
     steps: [
@@ -127,7 +127,7 @@ const ASSET_FLOWS: Flow[] = [
         id: "sub-action",
         type: "action",
         description:
-          "Submit the subscription order for {fund} of ₦{amount} (placeholder — would place order).",
+          "Submit the subscription order for {fund} of ₦{amount} (placeholder: would place order).",
         modelModeOnly: true,
       },
       {
@@ -140,8 +140,8 @@ const ASSET_FLOWS: Flow[] = [
       {
         id: "sub-escalate",
         type: "escalate",
-        team: "Client Services",
-        reason: "Subscription could not be completed — hand over on failure.",
+        team: "Customer Support Team",
+        reason: "Subscription could not be completed. Hand over on failure.",
       },
     ],
     versions: [
@@ -168,7 +168,7 @@ const ASSET_FLOWS: Flow[] = [
     entityId: ASSET,
     name: "Redemption",
     description:
-      "Investor redeems units from a fund. Placeholder logic pending FADE's input on holding checks and timelines (OQ-A, OQ-B).",
+      "Customer redeems units from a fund. Placeholder logic pending FADE's input on holding checks and timelines (OQ-A, OQ-B).",
     reviewStatus: "Draft",
     executionCandidate: false,
     steps: [
@@ -189,8 +189,8 @@ const ASSET_FLOWS: Flow[] = [
       {
         id: "red-validate",
         type: "validate",
-        rule: "Units requested ≤ the investor's current holding in that fund",
-        dataSource: "Investor holdings (placeholder)",
+        rule: "Units requested ≤ the customer's current holding in that fund",
+        dataSource: "Customer holdings (placeholder)",
       },
       {
         id: "red-confirm",
@@ -202,14 +202,14 @@ const ASSET_FLOWS: Flow[] = [
         id: "red-action",
         type: "action",
         description:
-          "Submit the redemption order for {units} units of {fund} (placeholder — would place order).",
+          "Submit the redemption order for {units} units of {fund} (placeholder: would place order).",
         modelModeOnly: true,
       },
       {
         id: "red-message",
         type: "message",
         text:
-          "Your redemption has been submitted. Proceeds typically settle within {settlement_window} (placeholder timeline — pending FADE).",
+          "Your redemption has been submitted. Proceeds typically settle within {settlement_window} (placeholder timeline, pending FADE).",
       },
       {
         id: "red-notify",
@@ -221,8 +221,8 @@ const ASSET_FLOWS: Flow[] = [
       {
         id: "red-escalate",
         type: "escalate",
-        team: "Client Services",
-        reason: "Redemption could not be completed — hand over on failure.",
+        team: "Customer Support Team",
+        reason: "Redemption could not be completed. Hand over on failure.",
       },
     ],
     versions: [
@@ -249,7 +249,7 @@ const ASSET_FLOWS: Flow[] = [
 /**
  * Reference flows for the already-live FCMB Bank tenant, shown for contrast
  * (Reviewed status, model mode still applies). These never appear in the Asset
- * Management console — tenant isolation (CLAUDE.md §9.2).
+ * Management console - tenant isolation (CLAUDE.md §9.2).
  */
 const BANK_FLOWS: Flow[] = [
   {
@@ -277,7 +277,7 @@ const BANK_FLOWS: Flow[] = [
         id: "card-action",
         type: "action",
         description:
-          "Block the affected card and raise a replacement request (placeholder — would block card).",
+          "Block the affected card and raise a replacement request (placeholder: would block card).",
         modelModeOnly: true,
       },
       {
@@ -290,7 +290,7 @@ const BANK_FLOWS: Flow[] = [
       {
         id: "card-escalate",
         type: "escalate",
-        team: "Bank — Cards Operations",
+        team: "Bank Cards Operations",
         reason: "Customer needs further help with the card replacement.",
       },
     ],
@@ -350,7 +350,7 @@ const BANK_FLOWS: Flow[] = [
         id: "air-action",
         type: "action",
         description:
-          "Debit the account and deliver airtime to {number} (placeholder — would purchase airtime).",
+          "Debit the account and deliver airtime to {number} (placeholder: would purchase airtime).",
         modelModeOnly: true,
       },
       {

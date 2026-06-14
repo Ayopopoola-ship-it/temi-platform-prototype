@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 
 interface AddStepMenuProps {
   onAdd: (type: FlowStepType) => void
-  /** Step types to omit (e.g. "decision" inside a branch — no deep nesting). */
+  /** Step types to omit (e.g. "decision" inside a branch - no deep nesting). */
   exclude?: FlowStepType[]
   /** "rail" = subtle inline affordance on the sequence spine; "button" = solid. */
   variant?: "rail" | "button"

@@ -2,7 +2,7 @@ import { FlaskConical } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 /**
- * The mandatory "MODEL MODE — does not execute" badge on every Action step
+ * The mandatory "MODEL MODE - does not execute" badge on every Action step
  * (CLAUDE.md §8, §9.1). This is compliance-critical and must be unmissable:
  * Action steps describe a transaction that WOULD occur but never do. Never
  * render an Action step without it.
@@ -16,7 +16,7 @@ export function ModelModeBadge({ className }: { className?: string }) {
       )}
     >
       <FlaskConical className="size-3.5" />
-      Model mode — does not execute
+      Model mode: does not execute
     </span>
   )
 }

@@ -2,7 +2,7 @@ import type { Entity } from "@/types"
 
 /**
  * The FCMB Group entity tenants (CLAUDE.md §2). All metrics are mock display
- * data — no backend. FCMB Bank is the live reference tenant; FCMB Asset
+ * data - no backend. FCMB Bank is the live reference tenant; FCMB Asset
  * Management is the pilot, shown mid-pipeline; ROVA is Pending and called out
  * as the platform failure made concrete (it is building its own divergent
  * agent, Ruby, rather than onboarding).
@@ -131,7 +131,7 @@ export const ENTITIES: Entity[] = [
     openP0Count: 0,
     openP1Count: 0,
     channels: [],
-    note: "Building its own divergent agent (Ruby) rather than onboarding onto Temi — the platform-failure case the shared model is meant to prevent.",
+    note: "Building its own divergent agent (Ruby) rather than onboarding onto Temi. This is the platform-failure case the shared model is meant to prevent.",
   },
 ]
 

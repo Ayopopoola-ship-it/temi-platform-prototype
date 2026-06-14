@@ -15,7 +15,7 @@ export const PERSONAS: Persona[] = [
     entityName: "FCMB Group",
     avatarInitial: "TP",
     purpose:
-      "The executive anchor — the whole-platform view across every entity.",
+      "The executive anchor: the whole-platform view across every entity.",
   },
   {
     id: "fade",
@@ -36,21 +36,21 @@ export const PERSONAS: Persona[] = [
     entityId: "fcmb-bank",
     entityName: "FCMB Bank",
     avatarInitial: "BO",
-    purpose: "The reference tenant, already live — shown for contrast.",
+    purpose: "The reference tenant, already live, shown for contrast.",
   },
   {
-    id: "investor-demo",
-    name: "Investor (Demo)",
+    id: "customer-demo",
+    name: "Customer (Demo)",
     role: "End Customer",
     experience: "customer",
     entityId: "asset-management",
     entityName: "FCMB Asset Management",
-    avatarInitial: "IV",
-    purpose: "Demonstrates the investor support conversation experience.",
+    avatarInitial: "CU",
+    purpose: "Demonstrates the customer support conversation experience.",
   },
 ]
 
-/** The default persona on first load (CLAUDE.md §4 — Temi Platform Admin). */
+/** The default persona on first load (CLAUDE.md §4 - Temi Platform Admin). */
 export const DEFAULT_PERSONA_ID = PERSONAS[0].id
 
 export function getPersonaById(id: string): Persona | undefined {

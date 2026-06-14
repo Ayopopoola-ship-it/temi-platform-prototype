@@ -37,7 +37,7 @@ const INTENT_OPTIONS = [
 
 const TEAM_OPTIONS = [
   "Investment Operations",
-  "Client Services",
+  "Customer Support Team",
   "Complaints & Resolution",
   "Onboarding & KYC",
   "Asset Management Support Desk",
@@ -252,7 +252,7 @@ function EscalationInner({
 
               {mappable.length === 0 && (
                 <li className="border-t border-border px-4 py-8 text-center text-sm text-text-secondary">
-                  No routing rules. Add one above — until then everything uses the
+                  No routing rules. Add one above; until then everything uses the
                   default route.
                 </li>
               )}
@@ -282,7 +282,7 @@ function EscalationInner({
           </div>
 
           <p className="mt-2 px-1 text-xs text-text-secondary">
-            The default fallback always exists and can't be removed — it catches any
+            The default fallback always exists and can't be removed; it catches any
             intent without a specific rule.
           </p>
         </div>

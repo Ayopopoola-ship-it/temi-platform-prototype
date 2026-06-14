@@ -7,7 +7,7 @@ import type { KBDocument, KnowledgeGap } from "@/types"
  * earlier version serving while a newer version indexes.
  *
  * All fund-specific detail (names, processes, figures) is PLACEHOLDER data
- * pending FADE's input (OQ-A, OQ-B) — not confirmed fund information.
+ * pending FADE's input (OQ-A, OQ-B) - not confirmed fund information.
  */
 const ENTITY_ID = "asset-management"
 
@@ -15,7 +15,7 @@ export const KB_DOCUMENTS: KBDocument[] = [
   {
     id: "kb-mmf-factsheet",
     entityId: ENTITY_ID,
-    name: "Money Market Fund — Factsheet",
+    name: "Money Market Fund Factsheet",
     fileType: "PDF",
     status: "Active",
     activeVersion: 2,
@@ -39,7 +39,7 @@ export const KB_DOCUMENTS: KBDocument[] = [
   {
     id: "kb-equity-factsheet",
     entityId: ENTITY_ID,
-    name: "Equity Fund — Factsheet",
+    name: "Equity Fund Factsheet",
     fileType: "PDF",
     status: "Active",
     activeVersion: 3,
@@ -68,7 +68,7 @@ export const KB_DOCUMENTS: KBDocument[] = [
   {
     id: "kb-nav-pricing-faq",
     entityId: ENTITY_ID,
-    name: "NAV & Pricing — FAQ",
+    name: "NAV & Pricing FAQ",
     fileType: "PDF",
     status: "Active",
     activeVersion: 2,
@@ -91,9 +91,9 @@ export const KB_DOCUMENTS: KBDocument[] = [
   {
     id: "kb-subscription-process",
     entityId: ENTITY_ID,
-    name: "Subscription (Top-up) — Process Guide",
+    name: "Subscription (Top-up) Process Guide",
     fileType: "DOCX",
-    // New v2 is indexing while v1 keeps serving — demonstrates activating a new
+    // New v2 is indexing while v1 keeps serving: demonstrates activating a new
     // version without losing the active one (CLAUDE.md §7.7).
     status: "Indexed",
     activeVersion: 1,
@@ -117,7 +117,7 @@ export const KB_DOCUMENTS: KBDocument[] = [
   {
     id: "kb-redemption-process",
     entityId: ENTITY_ID,
-    name: "Redemption — Process Guide",
+    name: "Redemption Process Guide",
     fileType: "DOCX",
     status: "Active",
     activeVersion: 1,
@@ -135,7 +135,7 @@ export const KB_DOCUMENTS: KBDocument[] = [
   {
     id: "kb-fixed-income-factsheet",
     entityId: ENTITY_ID,
-    name: "Fixed Income Fund — Factsheet",
+    name: "Fixed Income Fund Factsheet",
     fileType: "PDF",
     status: "Error",
     versions: [
@@ -144,7 +144,7 @@ export const KB_DOCUMENTS: KBDocument[] = [
         uploadedAt: "2026-05-30",
         uploadedBy: "FADE",
         active: false,
-        note: "Ingestion failed — scanned PDF with no extractable text.",
+        note: "Ingestion failed: scanned PDF with no extractable text.",
       },
     ],
     updatedAt: "2026-05-30",
@@ -152,7 +152,7 @@ export const KB_DOCUMENTS: KBDocument[] = [
   {
     id: "kb-kyc-account-opening",
     entityId: ENTITY_ID,
-    name: "KYC & Account Opening — FAQ",
+    name: "KYC & Account Opening FAQ",
     fileType: "PDF",
     status: "Uploaded",
     versions: [

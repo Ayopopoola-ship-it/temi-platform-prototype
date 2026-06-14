@@ -328,7 +328,7 @@ function FlowEditorInner({ flow, actor }: { flow: Flow; actor: string }) {
               </h2>
               <span className="inline-flex items-center gap-1.5 text-xs font-medium text-text-secondary">
                 <FlaskConical className="size-3.5 text-primary" />
-                Model mode — does not execute
+                Model mode: does not execute
               </span>
             </div>
             <FlowSequence steps={flow.steps} ops={ops} />
@@ -408,7 +408,7 @@ function FlowEditorInner({ flow, actor }: { flow: Flow; actor: string }) {
               </p>
             )}
 
-            {/* Execution candidate (v2.0 — shown, not actioned) */}
+            {/* Execution candidate (v2.0 - shown, not actioned) */}
             <div className="mt-4 border-t border-border pt-4">
               <label className="flex items-start gap-2.5">
                 <input
@@ -422,7 +422,7 @@ function FlowEditorInner({ flow, actor }: { flow: Flow; actor: string }) {
                     Flag as execution candidate
                   </span>
                   <span className="block text-xs text-text-secondary">
-                    A v2.0 transition. Recorded here but not actioned — flows
+                    A v2.0 transition. Recorded here but not actioned; flows
                     never execute in this prototype.
                   </span>
                 </span>
@@ -437,7 +437,7 @@ function FlowEditorInner({ flow, actor }: { flow: Flow; actor: string }) {
                     </p>
                     <p className="mt-0.5 text-xs text-text-secondary">
                       Before any flow could execute for FCMB Asset Management it
-                      must pass compliance review. This is a v2.0 capability —
+                      must pass compliance review. This is a v2.0 capability;
                       the flag is shown but not actioned.
                     </p>
                   </div>

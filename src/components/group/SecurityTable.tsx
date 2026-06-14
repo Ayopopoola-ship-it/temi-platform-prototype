@@ -45,7 +45,7 @@ export function SecurityTable({ items }: { items: SecurityItem[] }) {
                     key={item.id}
                     className={cn(
                       "border-b border-border last:border-0 align-top",
-                      // Subtle red wash on open P0 rows — never softened.
+                      // Subtle red wash on open P0 rows - never softened.
                       item.severity === "P0" && open && "bg-status-red/[0.03]"
                     )}
                   >

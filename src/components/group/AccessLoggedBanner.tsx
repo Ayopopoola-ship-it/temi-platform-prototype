@@ -4,7 +4,7 @@ import { usePersona } from "@/context/PersonaContext"
 /**
  * The visible tenant-isolation signal shown when a Group admin drills into a
  * single entity (CLAUDE.md §3, §9.2): the view is read-only and the cross-entity
- * access is logged with the acting persona. Mock timestamp — no live clock.
+ * access is logged with the acting persona. Mock timestamp - no live clock.
  */
 export function AccessLoggedBanner({ entityName }: { entityName: string }) {
   const { persona } = usePersona()
@@ -20,8 +20,7 @@ export function AccessLoggedBanner({ entityName }: { entityName: string }) {
             Read-only cross-entity view
           </span>
           <span className="text-text-secondary">
-            {" "}
-            — you are viewing {entityName} from the Group Console.
+            . You are viewing {entityName} from the Group Console.
           </span>
         </div>
       </div>

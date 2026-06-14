@@ -37,7 +37,7 @@ export default function Analytics() {
   const [exportedNote, setExportedNote] = useState(false)
 
   const handleExport = () => {
-    // Placeholder — export is not wired in V1 (CLAUDE.md §14).
+    // Placeholder - export is not wired in V1 (CLAUDE.md §14).
     console.log("[prototype] export analytics for", entityId)
     setExportedNote(true)
     window.setTimeout(() => setExportedNote(false), 2600)
@@ -80,23 +80,23 @@ export default function Analytics() {
         <StatCard
           label="Conversations"
           icon={MessagesSquare}
-          value={hasTraffic ? formatNumber(m.conversationVolume) : "—"}
+          value={hasTraffic ? formatNumber(m.conversationVolume) : "–"}
           sub="Last 12 weeks"
         />
         <StatCard
           label="AI resolution"
           icon={Target}
-          value={hasTraffic ? formatPercent(m.aiResolutionRate) : "—"}
+          value={hasTraffic ? formatPercent(m.aiResolutionRate) : "–"}
         />
         <StatCard
           label="Escalation rate"
           icon={TrendingUp}
-          value={hasTraffic ? formatPercent(m.escalationRate) : "—"}
+          value={hasTraffic ? formatPercent(m.escalationRate) : "–"}
         />
         <StatCard
           label="CSAT"
           icon={Smile}
-          value={m.csat !== undefined ? formatPercent(m.csat) : "—"}
+          value={m.csat !== undefined ? formatPercent(m.csat) : "–"}
         />
       </section>
 

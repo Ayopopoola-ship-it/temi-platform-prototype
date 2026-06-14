@@ -1,22 +1,22 @@
 /**
- * Scripted investor conversation for the End Customer Conversation
+ * Scripted customer conversation for the End Customer Conversation
  * demonstration (CLAUDE.md §3 Experience 3, §7.13).
  *
- * This is a DEMONSTRATION, not a built product — the conversation is entirely
+ * This is a DEMONSTRATION, not a built product. The conversation is entirely
  * mocked (no LLM, CLAUDE.md §15). It shows one happy-path arc for an FCMB
- * Asset Management investor:
+ * Asset Management customer:
  *   (a) an accurate, knowledge-base-grounded answer with NO advice given
  *       (the no-advice guardrail, CLAUDE.md §9.3);
- *   (b) the agent walking the investor through the modelled Top-up flow as
+ *   (b) the agent walking the customer through the modelled Top-up flow as
  *       guidance, explicitly NOT live execution (model mode, §8/§9.1);
  *   (c) a clean handover to a named human team that carries context and does
- *       not make the investor repeat themselves.
+ *       not make the customer repeat themselves.
  *
  * Figures (e.g. the ₦5,000 minimum) are illustrative placeholders for the
  * demo, consistent with the placeholder fund data elsewhere (OQ-A/OQ-B).
  */
 
-export type ChatSender = "temi" | "investor" | "human"
+export type ChatSender = "temi" | "customer" | "human"
 
 interface BaseEvent {
   id: string
@@ -63,7 +63,7 @@ export function typingDurationFor(e: ChatEvent): number {
   return 1300
 }
 
-export const INVESTOR_NAME = "Ada Obi"
+export const CUSTOMER_NAME = "Ada Obi"
 
 export const CHAT_SCRIPT: ChatEvent[] = [
   {
@@ -75,44 +75,44 @@ export const CHAT_SCRIPT: ChatEvent[] = [
   {
     id: "m2",
     kind: "text",
-    sender: "investor",
-    text: "Hi Temi. I've got some cash sitting idle — should I move it into the Money Market Fund now?",
+    sender: "customer",
+    text: "Hi Temi. I've got some cash sitting idle. Should I move it into the Money Market Fund now?",
   },
   {
     id: "m3",
     kind: "text",
     sender: "temi",
-    text: "I'm not able to give investment advice or recommend timing — only a licensed advisor can do that. What I can do is explain exactly how the Money Market Fund and top-ups work, so the decision is yours. Would that help?",
+    text: "I'm not able to give investment advice or recommend timing. Only a licensed advisor can do that. What I can do is explain exactly how the Money Market Fund and top-ups work, so the decision is yours. Would that help?",
   },
   {
     id: "m4",
     kind: "text",
-    sender: "investor",
-    text: "Yes please — how does a top-up work, and is there a minimum?",
+    sender: "customer",
+    text: "Yes please. How does a top-up work, and is there a minimum?",
   },
   {
     id: "m5",
     kind: "text",
     sender: "temi",
-    text: "You can top up your Money Market Fund on any business day. Top-ups start from a ₦5,000 minimum and are processed at the next available unit price — there's no charge to add funds.",
-    source: "Money Market Fund — Factsheet (v2)",
+    text: "You can top up your Money Market Fund on any business day. Top-ups start from a ₦5,000 minimum and are processed at the next available unit price. There's no charge to add funds.",
+    source: "Money Market Fund Factsheet (v2)",
   },
   {
     id: "m6",
     kind: "text",
-    sender: "investor",
+    sender: "customer",
     text: "Great. Can you help me add ₦50,000 to it?",
   },
   {
     id: "m7",
     kind: "text",
     sender: "temi",
-    text: "Of course — I'll guide you through each step. Just so you know: I'll prepare everything, but I don't move money myself. A specialist places the order securely at the end.",
+    text: "Of course. I'll guide you through each step. Just so you know: I'll prepare everything, but I don't move money myself. A specialist places the order securely at the end.",
   },
   {
     id: "m8",
     kind: "guidedSteps",
-    title: "Top-up — guided walkthrough",
+    title: "Top-up: guided walkthrough",
     note: "I'll walk you through each step. Nothing is processed until our team confirms it with you.",
     steps: [
       { label: "Confirm it's you", value: "Verified" },
@@ -123,26 +123,26 @@ export const CHAT_SCRIPT: ChatEvent[] = [
       { label: "Order placed by our team", value: "On handover" },
       { label: "Confirmation sent to you", value: "After processing" },
     ],
-    footnote: "Guidance only — Temi prepares the request but never moves money.",
+    footnote: "Guidance only. Temi prepares the request but never moves money.",
   },
   {
     id: "m9",
     kind: "text",
-    sender: "investor",
-    text: "Yes, that's right — go ahead.",
+    sender: "customer",
+    text: "Yes, that's right, go ahead.",
   },
   {
     id: "m10",
     kind: "text",
     sender: "temi",
-    text: "Perfect — everything's prepared. Because placing the order is a secured action, I'm connecting you to our Investment Operations team to complete it. They can see everything we've covered, so you won't need to repeat anything.",
+    text: "Perfect, everything's prepared. Because placing the order is a secured action, I'm connecting you to our Investment Operations team to complete it. They can see everything we've covered, so you won't need to repeat anything.",
   },
   {
     id: "m11",
     kind: "handover",
     team: "Investment Operations",
     context: [
-      { label: "Investor", value: "Ada Obi · identity verified" },
+      { label: "Customer", value: "Ada Obi · identity verified" },
       { label: "Request", value: "Money Market Fund top-up" },
       { label: "Amount", value: "₦50,000" },
       { label: "Source", value: "Web chat · handed over by Temi" },
@@ -154,13 +154,13 @@ export const CHAT_SCRIPT: ChatEvent[] = [
     sender: "human",
     senderName: "Tunde",
     senderTeam: "Investment Operations",
-    text: "Hi Ada, I'm Tunde from Investment Operations. I can see your request to top up ₦50,000 into the Money Market Fund, and that Temi has already verified you — so I have everything I need. I'll place that now and you'll get a confirmation shortly.",
+    text: "Hi Ada, I'm Tunde from Investment Operations. I can see your request to top up ₦50,000 into the Money Market Fund, and that Temi has already verified you, so I have everything I need. I'll place that now and you'll get a confirmation shortly.",
   },
   {
     id: "m13",
     kind: "text",
-    sender: "investor",
-    text: "Thank you — that was easy!",
+    sender: "customer",
+    text: "Thank you, that was easy!",
   },
   {
     id: "m14",

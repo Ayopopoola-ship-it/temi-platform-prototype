@@ -1,9 +1,9 @@
 /**
- * Flow Builder model helpers (CLAUDE.md §8 — MODEL MODE ONLY).
+ * Flow Builder model helpers (CLAUDE.md §8 - MODEL MODE ONLY).
  *
  * Flows are designed, versioned and reviewed by humans. They DO NOT execute.
  * Every Action step is a non-executing placeholder rendered with the
- * "MODEL MODE — does not execute" badge. This module centralises the step-type
+ * "MODEL MODE - does not execute" badge. This module centralises the step-type
  * metadata, factory and summaries so that constraint is expressed in one place
  * and cannot drift across the UI (CLAUDE.md §9.1, compliance-critical).
  */
@@ -41,7 +41,7 @@ export interface StepMeta {
  * - agent    → the bot speaks / collects / branches / notifies (purple)
  * - guard    → a check or confirmation gate (green)
  * - handover → leaves the bot for a human (amber)
- * - action   → a transaction that WOULD occur — never executes (purple + badge)
+ * - action   → a transaction that WOULD occur - never executes (purple + badge)
  */
 export const STEP_META: Record<FlowStepType, StepMeta> = {
   message: {
@@ -77,7 +77,7 @@ export const STEP_META: Record<FlowStepType, StepMeta> = {
     label: "Action",
     icon: ArrowLeftRight,
     tone: "action",
-    blurb: "Describe a transaction that would occur — never executes.",
+    blurb: "Describe a transaction that would occur; it never executes.",
   },
   confirm: {
     type: "confirm",
@@ -130,7 +130,7 @@ function nextStepId(type: FlowStepType): string {
 
 /**
  * Build a fresh step of the given type with empty (but valid) defaults. Action
- * steps are created with `modelModeOnly: true` locked on — there is no code
+ * steps are created with `modelModeOnly: true` locked on - there is no code
  * path that produces an executing action (CLAUDE.md §9.1).
  */
 export function createStep(type: FlowStepType): FlowStep {
@@ -223,7 +223,7 @@ export function countSteps(steps: FlowStep[]): number {
 
 /**
  * A flow is "complete" (eligible to be marked Reviewed) when it has at least
- * one step and every step — including those inside decision branches — is
+ * one step and every step - including those inside decision branches - is
  * configured (CLAUDE.md §8: cannot be marked Reviewed without all steps set).
  */
 export function isFlowComplete(steps: FlowStep[]): boolean {

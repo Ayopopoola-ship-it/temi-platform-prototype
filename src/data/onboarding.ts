@@ -43,7 +43,7 @@ export function stageLabel(key: PlaybookStageKey | GateKey): string {
   )
 }
 
-/** FCMB Asset Management — the pilot, mid-pipeline at Configuration. */
+/** FCMB Asset Management - the pilot, mid-pipeline at Configuration. */
 const ASSET_MANAGEMENT_PIPELINE: OnboardingStage[] = [
   {
     key: "scoping",
@@ -104,7 +104,7 @@ const ASSET_MANAGEMENT_PIPELINE: OnboardingStage[] = [
     label: STAGE_LABELS["soft-launch"],
     isGate: false,
     status: "pending",
-    outstanding: "Limited investor cohort; entry criteria not yet met.",
+    outstanding: "Limited customer cohort; entry criteria not yet met.",
   },
   {
     key: "live",
@@ -115,7 +115,7 @@ const ASSET_MANAGEMENT_PIPELINE: OnboardingStage[] = [
   },
 ]
 
-/** CSL Stockbrokers — second entity in the playbook, currently scoping. */
+/** CSL Stockbrokers - second entity in the playbook, currently scoping. */
 const CSL_PIPELINE: OnboardingStage[] = [
   {
     key: "scoping",

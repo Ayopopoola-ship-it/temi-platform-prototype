@@ -37,7 +37,7 @@ interface StatusPillProps {
   children: ReactNode
   /** Show the leading status dot (default true). */
   dot?: boolean
-  /** Subtly pulse the dot — used for live/critical signals. */
+  /** Subtly pulse the dot - used for live/critical signals. */
   pulse?: boolean
   className?: string
 }

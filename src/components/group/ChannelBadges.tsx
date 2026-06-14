@@ -44,7 +44,7 @@ export function ChannelBadges({
         return (
           <span
             key={c}
-            title={`${meta.label}${active ? "" : " — not configured"}`}
+            title={`${meta.label}${active ? "" : " (not configured)"}`}
             className={cn(
               "flex size-6 items-center justify-center rounded-md ring-1 ring-inset",
               active

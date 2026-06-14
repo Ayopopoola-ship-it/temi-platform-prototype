@@ -37,7 +37,7 @@ const inputClass =
 /**
  * The editable field set for a single step, keyed by step type. Every change
  * is pushed up via `onUpdate` so the editor can re-version and log it. The
- * Action step shows the model-mode badge inline — it describes a transaction
+ * Action step shows the model-mode badge inline - it describes a transaction
  * that would occur but never executes (CLAUDE.md §8).
  */
 export function StepConfig({
@@ -115,7 +115,7 @@ export function StepConfig({
     case "validate":
       return (
         <div className="space-y-3">
-          <Field label="Rule to check" hint="A check against a rule or placeholder data source — model mode does not run it.">
+          <Field label="Rule to check" hint="A check against a rule or placeholder data source; model mode does not run it.">
             <input
               value={step.rule}
               onChange={(e) => onUpdate({ rule: e.target.value } as Partial<FlowStep>)}

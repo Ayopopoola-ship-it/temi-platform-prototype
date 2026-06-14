@@ -17,7 +17,7 @@ function baseName(name: string): string {
 }
 
 /**
- * Simulated drag-and-drop upload zone (CLAUDE.md §7.7 — upload is simulated, no
+ * Simulated drag-and-drop upload zone (CLAUDE.md §7.7 - upload is simulated, no
  * backend). Accepts dropped files or a click-to-browse selection and reports
  * them to the parent, which mocks the ingestion lifecycle.
  */

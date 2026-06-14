@@ -46,21 +46,21 @@ const GROUP_ROUTES: RouteDef[] = [
     path: "overview",
     title: "Overview",
     description:
-      "All entities at a glance — status, conversation volume, AI resolution and escalation per entity, plus group-level security.",
+      "All entities at a glance: status, conversation volume, AI resolution and escalation per entity, plus group-level security.",
     icon: LayoutDashboard,
   },
   {
     path: "entities",
     title: "Entities",
     description:
-      "Every FCMB Group entity tenant with status and key metrics. Drill into any entity — that access is logged.",
+      "Every FCMB Group entity tenant with status and key metrics. Drill into any entity, and that access is logged.",
     icon: Building2,
   },
   {
     path: "pipeline",
     title: "Onboarding Pipeline",
     description:
-      "The repeatable playbook — seven stages and two gates — tracking each onboarding entity. FCMB Asset Management is the active pilot.",
+      "The repeatable playbook: seven stages and two gates, tracking each onboarding entity. FCMB Asset Management is the active pilot.",
     icon: GitBranch,
   },
   {
@@ -90,7 +90,7 @@ const ENTITY_ROUTES: RouteDef[] = [
     path: "dashboard",
     title: "Dashboard",
     description:
-      "This entity's performance at a glance — conversation volume, AI resolution, escalation by intent, CSAT and knowledge gaps.",
+      "This entity's performance at a glance: conversation volume, AI resolution, escalation by intent, CSAT and knowledge gaps.",
     icon: LayoutDashboard,
   },
   {
@@ -104,7 +104,7 @@ const ENTITY_ROUTES: RouteDef[] = [
     path: "flows",
     title: "Flows",
     description:
-      "Design transactional flows as explicit, reviewable sequences — the Flow Builder, in model mode only.",
+      "Design transactional flows as explicit, reviewable sequences in the Flow Builder, in model mode only.",
     icon: Workflow,
   },
   {
@@ -132,7 +132,7 @@ const ENTITY_ROUTES: RouteDef[] = [
     path: "analytics",
     title: "Analytics",
     description:
-      "Trends and breakdowns by channel and intent, CSAT distribution, and knowledge gaps — the fuller analytics view.",
+      "Trends and breakdowns by channel and intent, CSAT distribution, and knowledge gaps: the fuller analytics view.",
     icon: BarChart3,
   },
   {
@@ -214,7 +214,7 @@ function App() {
               />
             ))}
 
-            {/* Flow Builder — full-page editor (CLAUDE.md §8) */}
+            {/* Flow Builder - full-page editor (CLAUDE.md §8) */}
             <Route path="entity/flows/:flowId" element={<EntityFlowEditor />} />
 
             <Route path="chat" element={<CustomerChatDemo />} />

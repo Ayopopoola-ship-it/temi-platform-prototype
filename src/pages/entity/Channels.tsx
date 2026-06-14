@@ -35,7 +35,7 @@ const CHANNELS: ChannelMeta[] = [
     key: "whatsapp",
     name: "WhatsApp",
     description:
-      "Conversational support on WhatsApp Business — the channel most customers reach for first.",
+      "Conversational support on WhatsApp Business, the channel most customers reach for first.",
     icon: MessageCircle,
     selfServe: false,
     provisioning: "WhatsApp Business number provisioning by the Temi platform team",
@@ -66,7 +66,7 @@ function seedLog(entityId: string, enabled: Record<ChannelKey, boolean>): AuditE
     seeds.push({
       id: "seed-ch-web",
       actor: "FADE",
-      action: "Enabled Web widget — live on the FCMB Asset Management site",
+      action: "Enabled Web widget; live on the FCMB Asset Management site",
       timestamp: "2026-05-20T11:00:00",
     })
   return seeds
@@ -78,7 +78,7 @@ function CopyableCode({ code }: { code: string }) {
     try {
       await navigator.clipboard?.writeText(code)
     } catch {
-      /* clipboard may be blocked in some embeds — show optimistic feedback */
+      /* clipboard may be blocked in some embeds - show optimistic feedback */
     }
     setCopied(true)
     window.setTimeout(() => setCopied(false), 1800)
@@ -160,7 +160,7 @@ function ChannelCard({
         {enabled ? (
           meta.selfServe ? (
             <StatusFlag tone="green" icon={ShieldCheck}>
-              Live — active on your website now.
+              Live: active on your website now.
             </StatusFlag>
           ) : (
             <StatusFlag tone="amber" icon={Info}>
@@ -235,7 +235,7 @@ function ChannelsInner({
   const [enabled, setEnabled] = useState<Record<ChannelKey, boolean>>(initial)
   const [log, setLog] = useState<AuditEntry[]>(() => seedLog(entityId, initial))
 
-  const embedCode = `<!-- Temi support widget — ${entityName} -->
+  const embedCode = `<!-- Temi support widget for ${entityName} -->
 <script>
   (function () {
     var s = document.createElement('script');
@@ -253,7 +253,7 @@ function ChannelsInner({
       ? `Disabled ${meta.name}`
       : meta.selfServe
         ? `Enabled ${meta.name}`
-        : `Requested ${meta.name} — ${meta.provisioning}`
+        : `Requested ${meta.name}: ${meta.provisioning}`
     setLog((prev) => [makeAuditEntry(actor, action), ...prev])
   }
 
@@ -298,7 +298,7 @@ function ChannelsInner({
 
 export default function Channels() {
   const { persona } = usePersona()
-  // key on entityId — channel toggle state never carries across entities (§9.2).
+  // key on entityId - channel toggle state never carries across entities (§9.2).
   return (
     <ChannelsInner
       key={persona.entityId}

@@ -17,7 +17,7 @@ import { EntitySidebar } from "./EntitySidebar"
 import { TopHeader } from "./TopHeader"
 
 /**
- * The adaptive app shell (CLAUDE.md §5 — three experiences, one shell). The
+ * The adaptive app shell (CLAUDE.md §5 - three experiences, one shell). The
  * sidebar and content switch on the active persona's experience, and the route
  * is kept in sync with the persona so the whole console changes on switch.
  */

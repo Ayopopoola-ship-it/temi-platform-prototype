@@ -13,7 +13,7 @@ import { makeAuditEntry } from "@/lib/audit"
 /**
  * Mutable prototype state for the Flow Builder, shared between the flow list
  * and the full-page editor so edits persist across navigation within a session
- * (CLAUDE.md §10 — React Context for prototype state). Tenant isolation is
+ * (CLAUDE.md §10 - React Context for prototype state). Tenant isolation is
  * enforced by callers, which only ever request flows for the active entity
  * (CLAUDE.md §9.2).
  */

@@ -88,7 +88,7 @@ function NodeMarker({
 
 /* -------------------------------------------------------------- track ---- */
 
-/** Horizontal progress track — the hero pipeline visual. Scrolls on mobile. */
+/** Horizontal progress track - the hero pipeline visual. Scrolls on mobile. */
 export function OnboardingTrack({ stages }: { stages: OnboardingStage[] }) {
   return (
     <div className="overflow-x-auto pb-2">
@@ -148,7 +148,7 @@ export function OnboardingTrack({ stages }: { stages: OnboardingStage[] }) {
 
 /* ----------------------------------------------------------- timeline ---- */
 
-/** Vertical detail timeline — each stage with its status and what's outstanding. */
+/** Vertical detail timeline - each stage with its status and what's outstanding. */
 export function OnboardingTimeline({ stages }: { stages: OnboardingStage[] }) {
   return (
     <ol className="relative">

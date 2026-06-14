@@ -3,7 +3,7 @@ import type { SecurityItem } from "@/types"
 /**
  * Mock P0/P1 security backlog (CLAUDE.md §7.5, §9.4). This is deliberately
  * prominent: the open count drives the red group-security indicator on the
- * Overview, and the product story depends on it being visible — do not soften.
+ * Overview, and the product story depends on it being visible - do not soften.
  *
  * This is mock DISPLAY data depicting security status as content (CLAUDE.md
  * §12), not a real vulnerability in this prototype. Categories mirror the real

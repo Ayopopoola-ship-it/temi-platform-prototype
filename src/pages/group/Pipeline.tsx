@@ -29,7 +29,7 @@ export default function Pipeline() {
       <PageHeader
         icon={GitBranch}
         title="Onboarding Pipeline"
-        description="The repeatable playbook every entity follows — seven stages with two gates (Security and Compliance) between Configuration and Testing. Each entity onboards the same way."
+        description="The repeatable playbook every entity follows: seven stages with two gates (Security and Compliance) between Configuration and Testing. Each entity onboards the same way."
       />
 
       {/* Entity selector */}
@@ -105,7 +105,7 @@ export default function Pipeline() {
         </div>
       </section>
 
-      {/* Blocked-gate callout — makes the gate real (CLAUDE.md §7.4, §9.4) */}
+      {/* Blocked-gate callout - makes the gate real (CLAUDE.md §7.4, §9.4) */}
       {blockedGate && (
         <Link
           to="/group/security"

@@ -86,10 +86,10 @@ export default function Security() {
       <PageHeader
         icon={ShieldAlert}
         title="Platform Security"
-        description="Open P0 / P1 security items and their remediation state across FCMB Group. This is the security gate — items here block onboarding and go-live until cleared."
+        description="Open P0 / P1 security items and their remediation state across FCMB Group. This is the security gate; items here block onboarding and go-live until cleared."
       />
 
-      {/* Headline — prominent and red when items are open (CLAUDE.md §9.4) */}
+      {/* Headline - prominent and red when items are open (CLAUDE.md §9.4) */}
       <section
         className={cn(
           "mt-7 grid grid-cols-1 gap-5 rounded-xl border p-5 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-8 sm:p-6",
@@ -120,7 +120,7 @@ export default function Security() {
                 hasOpen ? "text-status-red" : "text-status-green"
               )}
             >
-              {hasOpen ? "Security gate — not clear" : "Security gate — clear"}
+              {hasOpen ? "Security gate: not clear" : "Security gate: clear"}
             </div>
             <div className="mt-1 flex items-baseline gap-2">
               <span

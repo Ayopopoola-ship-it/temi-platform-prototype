@@ -12,7 +12,7 @@ import { DEFAULT_PERSONA_ID, getPersonaById, PERSONAS } from "@/data/personas"
 /**
  * Where each experience lands when its persona becomes active, and the base
  * path that experience "owns". The app shell uses these to keep the route in
- * sync with the active persona (CLAUDE.md §3, §5 — three experiences, one
+ * sync with the active persona (CLAUDE.md §3, §5 - three experiences, one
  * shell). Group and Entity consoles are namespaced so their shared screen
  * names (Capabilities, Settings) never collide.
  */
