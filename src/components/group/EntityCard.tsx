@@ -105,7 +105,7 @@ export function EntityCard({ entity }: { entity: Entity }) {
         )}
       >
         <ChannelBadges channels={entity.channels} showInactive={false} />
-        <EntitySecurityChip entity={entity} />
+        <EntitySecurityChip entityId={entity.id} />
       </div>
     </Link>
   )

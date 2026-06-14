@@ -115,7 +115,7 @@ export default function EntityDetail() {
 
           <div className="flex shrink-0 items-center gap-3">
             <ChannelBadges channels={entity.channels} showInactive={false} />
-            <EntitySecurityChip entity={entity} />
+            <EntitySecurityChip entityId={entity.id} />
           </div>
         </div>
       </div>

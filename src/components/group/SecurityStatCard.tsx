@@ -1,15 +1,16 @@
 import { ArrowUpRight, ShieldAlert, ShieldCheck } from "lucide-react"
 import { Link } from "react-router-dom"
 import { cn } from "@/lib/utils"
-import { OPEN_SECURITY_COUNTS } from "@/data/securityItems"
+import { useSecurity } from "@/context/SecurityContext"
 
 /**
  * The open P0/P1 security count for the Group Overview. Per the locked decision
  * (CLAUDE.md §9.4) this is prominent and RED whenever the open count is above
- * zero - never softened. Links through to the Platform Security screen.
+ * zero - never softened. Reads live state so resolutions on the Platform
+ * Security screen flow straight through here. Links to that screen.
  */
 export function SecurityStatCard({ className }: { className?: string }) {
-  const { p0, p1, total } = OPEN_SECURITY_COUNTS
+  const { openP0: p0, openP1: p1, openCount: total } = useSecurity()
   const hasOpen = total > 0
 
   return (

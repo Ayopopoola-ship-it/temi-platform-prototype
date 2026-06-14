@@ -1,20 +1,22 @@
 import { ShieldAlert, ShieldCheck } from "lucide-react"
 import { cn } from "@/lib/utils"
-import type { Entity } from "@/types"
+import { useSecurity } from "@/context/SecurityContext"
 
 /**
  * Per-entity security signal derived from its open P0/P1 counts. Reinforces the
  * security story at the entity level (CLAUDE.md §9.4) - red for any open P0,
- * amber for P1-only, green when clear.
+ * amber for P1-only, green when clear. Reads live state so resolutions on the
+ * Platform Security screen update the entity chips too.
  */
 export function EntitySecurityChip({
-  entity,
+  entityId,
   className,
 }: {
-  entity: Pick<Entity, "openP0Count" | "openP1Count">
+  entityId: string
   className?: string
 }) {
-  const { openP0Count: p0, openP1Count: p1 } = entity
+  const { openCountForEntity } = useSecurity()
+  const { p0, p1 } = openCountForEntity(entityId)
 
   if (p0 === 0 && p1 === 0) {
     return (

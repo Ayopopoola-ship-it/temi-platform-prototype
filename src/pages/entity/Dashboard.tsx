@@ -9,9 +9,10 @@ import {
 } from "lucide-react"
 import { Link } from "react-router-dom"
 import { usePersona } from "@/context/PersonaContext"
+import { useSecurity } from "@/context/SecurityContext"
 import { getEntityById } from "@/data/entities"
 import { getAnalyticsByEntity } from "@/data/analytics"
-import { getOnboardingForEntity } from "@/data/onboarding"
+import { applySecurityClearance, getOnboardingForEntity } from "@/data/onboarding"
 import { formatNumber, formatPercent } from "@/lib/format"
 import { PageHeader } from "@/components/layout/PageHeader"
 import { StatCard } from "@/components/group/StatCard"
@@ -22,11 +23,17 @@ import { IntentBarChart } from "@/components/entity/IntentBarChart"
 
 export default function Dashboard() {
   const { persona } = usePersona()
+  const { securityGateCleared } = useSecurity()
   // Strictly scoped to the active persona's entity - tenant isolation (§9.2).
   const entityId = persona.entityId
   const entity = getEntityById(entityId)
   const analytics = getAnalyticsByEntity(entityId)
-  const stages = getOnboardingForEntity(entityId)
+  // The platform team's gate clearance flows straight through to this dashboard.
+  const cleared = securityGateCleared && entityId === "asset-management"
+  const baseStages = getOnboardingForEntity(entityId)
+  const stages = baseStages
+    ? applySecurityClearance(baseStages, cleared)
+    : undefined
 
   if (!entity) {
     return (

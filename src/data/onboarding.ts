@@ -194,5 +194,39 @@ export function getOnboardingForEntity(
   return ENTITY_PIPELINES[entityId]
 }
 
+/**
+ * Apply the platform admin's "clear security gate" action to a set of stages:
+ * configuration and the security gate complete, and the compliance gate becomes
+ * the new active stage. Returns the stages unchanged when the gate is not yet
+ * cleared. Only meaningful for an entity currently held at the security gate.
+ */
+export function applySecurityClearance(
+  stages: OnboardingStage[],
+  cleared: boolean
+): OnboardingStage[] {
+  if (!cleared) return stages
+  return stages.map((s) => {
+    if (s.key === "configuration" && s.status !== "complete") {
+      return { ...s, status: "complete", outstanding: "Configuration complete." }
+    }
+    if (s.key === "security") {
+      return {
+        ...s,
+        status: "complete",
+        outstanding: "Security gate cleared by the Temi platform team.",
+      }
+    }
+    if (s.key === "compliance" && s.status === "pending") {
+      return {
+        ...s,
+        status: "in-progress",
+        outstanding:
+          "No-advice constraint review and compliance sign-off in progress.",
+      }
+    }
+    return s
+  })
+}
+
 /** Entities actively in the playbook, in display order (pilot first). */
 export const ONBOARDING_ENTITY_IDS = ["asset-management", "csl-stockbrokers"]

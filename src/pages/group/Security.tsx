@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react"
-import { ShieldAlert, ShieldCheck } from "lucide-react"
+import { CheckCircle2, ShieldAlert, ShieldCheck } from "lucide-react"
 import type { SecurityItem, SecurityStatus } from "@/types"
-import { OPEN_SECURITY_COUNTS, SECURITY_ITEMS } from "@/data/securityItems"
+import { useSecurity } from "@/context/SecurityContext"
 import { cn } from "@/lib/utils"
 import { PageHeader } from "@/components/layout/PageHeader"
 import { SecurityTable } from "@/components/group/SecurityTable"
@@ -60,34 +60,54 @@ function HeadlineTile({
 }
 
 export default function Security() {
+  const { items, markResolved, openCount, openP0, openP1, allResolved } =
+    useSecurity()
   const [filter, setFilter] = useState<StatusFilter>("all")
 
   const counts = useMemo(() => {
-    const c = { all: SECURITY_ITEMS.length } as Record<StatusFilter, number>
+    const c = { all: items.length } as Record<StatusFilter, number>
     for (const f of FILTERS) {
       if (f.key === "all") continue
-      c[f.key] = SECURITY_ITEMS.filter((i) => i.status === f.key).length
+      c[f.key] = items.filter((i) => i.status === f.key).length
     }
     return c
-  }, [])
+  }, [items])
 
-  const resolvedCount = SECURITY_ITEMS.length - OPEN_SECURITY_COUNTS.total
-  const hasOpen = OPEN_SECURITY_COUNTS.total > 0
+  const resolvedCount = items.length - openCount
+  const hasOpen = openCount > 0
 
   const visible = useMemo(() => {
-    const sorted = sortItems(SECURITY_ITEMS)
+    const sorted = sortItems(items)
     return filter === "all"
       ? sorted
       : sorted.filter((i) => i.status === filter)
-  }, [filter])
+  }, [items, filter])
 
   return (
     <div className="mx-auto w-full max-w-7xl px-5 py-7 sm:px-8">
       <PageHeader
         icon={ShieldAlert}
         title="Platform Security"
-        description="Open P0 / P1 security items and their remediation state across FCMB Group. This is the security gate; items here block onboarding and go-live until cleared."
+        description="Open P0 / P1 security items and their remediation state across FCMB Group. The Temi platform team owns resolving these. This is the security gate; items here block onboarding and go-live until cleared."
       />
+
+      {/* All-resolved banner: the gate can now be cleared (per onboarding entity) */}
+      {allResolved && (
+        <div className="mt-6 flex items-start gap-3 rounded-xl border border-status-green/30 bg-status-green/[0.06] p-4">
+          <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-status-green/15 text-status-green">
+            <CheckCircle2 className="size-5" />
+          </span>
+          <div className="min-w-0">
+            <p className="text-sm font-semibold text-status-green">
+              All security items resolved
+            </p>
+            <p className="mt-0.5 text-sm text-text-secondary">
+              You can now clear the security gate for onboarding entities from
+              the Onboarding Pipeline.
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Headline - prominent and red when items are open (CLAUDE.md §9.4) */}
       <section
@@ -129,11 +149,11 @@ export default function Security() {
                   hasOpen ? "text-status-red" : "text-status-green"
                 )}
               >
-                {OPEN_SECURITY_COUNTS.total}
+                {openCount}
               </span>
               <span className="text-base font-medium text-text-primary">
                 open P0 / P1 item
-                {OPEN_SECURITY_COUNTS.total === 1 ? "" : "s"}
+                {openCount === 1 ? "" : "s"}
               </span>
             </div>
             <p className="mt-1 max-w-md text-sm text-text-secondary">
@@ -145,12 +165,8 @@ export default function Security() {
         </div>
 
         <div className="grid grid-cols-3 gap-3 sm:w-72">
-          <HeadlineTile label="Open P0" count={OPEN_SECURITY_COUNTS.p0} tone="red" />
-          <HeadlineTile
-            label="Open P1"
-            count={OPEN_SECURITY_COUNTS.p1}
-            tone="amber"
-          />
+          <HeadlineTile label="Open P0" count={openP0} tone="red" />
+          <HeadlineTile label="Open P1" count={openP1} tone="amber" />
           <HeadlineTile label="Resolved" count={resolvedCount} tone="green" />
         </div>
       </section>
@@ -188,7 +204,7 @@ export default function Security() {
       </div>
 
       <section className="mt-4">
-        <SecurityTable items={visible} />
+        <SecurityTable items={visible} onResolve={markResolved} />
       </section>
     </div>
   )

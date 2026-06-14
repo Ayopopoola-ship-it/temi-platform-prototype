@@ -1,8 +1,13 @@
-import { CheckCircle2, GitBranch, Rocket, ShieldAlert } from "lucide-react"
+import {
+  CheckCircle2,
+  GitBranch,
+  Hourglass,
+  Rocket,
+  ShieldCheck,
+} from "lucide-react"
 import type { Entity, OnboardingStage } from "@/types"
 import { stageLabel } from "@/data/onboarding"
 import { formatPercent } from "@/lib/format"
-import { cn } from "@/lib/utils"
 
 /**
  * Compact onboarding-status indicator for the entity Dashboard (CLAUDE.md §7.6):
@@ -59,7 +64,9 @@ export function OnboardingStatusCard({
   const current =
     stages.find((s) => s.status === "in-progress") ??
     stages.find((s) => s.status === "blocked")
-  const blockedGate = stages.find((s) => s.isGate && s.status === "blocked")
+  const securityGate = stages.find((s) => s.key === "security")
+  const securityBlocked = securityGate?.status === "blocked"
+  const securityCleared = securityGate?.status === "complete"
 
   return (
     <div className="rounded-xl border border-border bg-card p-5 shadow-xs">
@@ -100,23 +107,41 @@ export function OnboardingStatusCard({
         </div>
       </div>
 
-      {blockedGate && (
-        <div
-          className={cn(
-            "mt-4 flex items-start gap-2.5 rounded-lg border border-status-red/30 bg-status-red/[0.05] px-3 py-2.5"
-          )}
-        >
-          <ShieldAlert className="mt-0.5 size-4 shrink-0 text-status-red" />
-          <p className="text-sm text-text-secondary">
-            <span className="font-medium text-status-red">
-              {blockedGate.label} blocked.
-            </span>{" "}
-            {blockedGate.outstanding} Testing cannot begin until it passes.
+      {/* Security gate: FADE is waiting on the platform team, not resolving.
+          Status updates automatically when the gate is cleared. */}
+      {securityBlocked && (
+        <div className="mt-4 rounded-lg border border-status-amber/30 bg-status-amber/[0.06] p-3.5">
+          <div className="flex items-center gap-2">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-status-amber/15 px-2 py-0.5 text-xs font-semibold text-[#B45309]">
+              <Hourglass className="size-3" /> Waiting on platform team
+            </span>
+          </div>
+          <p className="mt-2 text-sm text-text-secondary">
+            The Temi platform team is completing a security review before testing
+            can begin. This is not something you need to action.
+          </p>
+          <p className="mt-1.5 text-sm text-text-secondary">
+            Contact your Temi platform administrator if you need an update on
+            timing.
           </p>
         </div>
       )}
 
-      {!blockedGate && progress === 1 && (
+      {securityCleared && (
+        <div className="mt-4 flex items-start gap-2.5 rounded-lg border border-status-green/30 bg-status-green/[0.06] p-3.5">
+          <ShieldCheck className="mt-0.5 size-4 shrink-0 text-status-green" />
+          <div>
+            <p className="text-sm font-semibold text-status-green">
+              Security cleared. You can now begin testing.
+            </p>
+            <p className="mt-0.5 text-sm text-text-secondary">
+              The Temi platform team has completed the security review.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {!securityBlocked && !securityCleared && progress === 1 && (
         <div className="mt-4 flex items-center gap-2 text-sm text-status-green">
           <CheckCircle2 className="size-4" /> All playbook steps complete.
         </div>

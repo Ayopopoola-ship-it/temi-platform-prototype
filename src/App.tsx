@@ -17,6 +17,7 @@ import type { ReactNode } from "react"
 import { PersonaProvider } from "@/context/PersonaContext"
 import { FlowsProvider } from "@/context/FlowsContext"
 import { OnboardingProvider } from "@/context/OnboardingContext"
+import { SecurityProvider } from "@/context/SecurityContext"
 import { AppShell } from "@/components/layout/AppShell"
 import { PlaceholderPage } from "@/components/layout/PlaceholderPage"
 import CustomerChatDemo from "@/pages/CustomerChatDemo"
@@ -173,6 +174,7 @@ function App() {
       <PersonaProvider>
         <FlowsProvider>
           <OnboardingProvider>
+          <SecurityProvider>
           <Routes>
           <Route path="/" element={<AppShell />}>
             {/* "/" and unknown paths are redirected to the active persona's
@@ -227,6 +229,7 @@ function App() {
             <Route path="*" element={null} />
           </Route>
           </Routes>
+          </SecurityProvider>
           </OnboardingProvider>
         </FlowsProvider>
       </PersonaProvider>

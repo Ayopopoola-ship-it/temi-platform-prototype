@@ -127,7 +127,7 @@ export function EntitiesTable({ entities }: { entities: Entity[] }) {
         accessorFn: (e) => e.openP0Count * 10 + e.openP1Count,
         header: "Security",
         enableSorting: true,
-        cell: ({ row }) => <EntitySecurityChip entity={row.original} />,
+        cell: ({ row }) => <EntitySecurityChip entityId={row.original.id} />,
       },
       {
         id: "channels",

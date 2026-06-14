@@ -164,8 +164,10 @@ function ChannelCard({
             </StatusFlag>
           ) : (
             <StatusFlag tone="amber" icon={Info}>
-              Pending: {meta.provisioning}. The channel goes live once the central
-              team completes provisioning.
+              Pending with the Temi platform team: {meta.provisioning}. This is
+              not something you need to action. The channel goes live once
+              provisioning is complete. Contact your Temi platform administrator
+              if you need an update on timing.
             </StatusFlag>
           )
         ) : (

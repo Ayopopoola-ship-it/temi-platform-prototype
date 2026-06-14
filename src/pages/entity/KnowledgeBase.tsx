@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { format } from "date-fns"
 import { AnimatePresence, motion } from "framer-motion"
 import {
+  AlertTriangle,
   BookOpen,
   ChevronDown,
   CircleHelp,
@@ -308,6 +309,30 @@ function KnowledgeBaseInner({
                         )}
                       />
                     </button>
+
+                    {/* Error state: who owns it (you), what to do, where to act */}
+                    {doc.status === "Error" && (
+                      <div className="mb-2 ml-12 mr-2 flex flex-col gap-2 rounded-lg border border-status-red/30 bg-status-red/[0.05] p-3 sm:flex-row sm:items-center sm:justify-between">
+                        <div className="flex items-start gap-2">
+                          <AlertTriangle className="mt-0.5 size-4 shrink-0 text-status-red" />
+                          <p className="text-sm text-text-secondary">
+                            <span className="font-medium text-status-red">
+                              This file could not be read.
+                            </span>{" "}
+                            You can resolve this here: upload a text-based PDF or
+                            DOCX to replace it.
+                          </p>
+                        </div>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="self-start sm:self-auto"
+                          onClick={() => addVersion(doc)}
+                        >
+                          <FilePlus2 /> Upload a working version
+                        </Button>
+                      </div>
+                    )}
 
                     {/* Version history */}
                     <AnimatePresence initial={false}>
